@@ -1,8 +1,11 @@
 class planet{
-  double numSpaceship;
-  planet(){
+
+  
+  int numSpaceship = 10;
+  
+  planet(int x, int y, int t, int sp){
     if (/*default*/true){
-      numSpaceship = Math.random()*100 +20;
+      numSpaceship = (int)(Math.random()*100 +20);
     }
   }
 }
