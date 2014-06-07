@@ -6,6 +6,10 @@ int bluex = 500;
 int bluey = 200;
 int grayx = 250;
 int grayy = 200; // VARIABLES INSTEAD OF NUMBER COORDS
+
+int blueShips = 0;
+int savedTime;
+
 ring circle = new ring(redx, redy);
 ring circle2 = new ring(grayx, grayy);
 ring circle3 = new ring(bluex, bluey);
@@ -18,6 +22,7 @@ void setup(){
   blue = loadImage("img/blue2.png");
   gray = loadImage("img/gray2.png");
   cursor = loadImage("img/cursor.png");
+  savedTime = millis();
 }
 
 void mouseClicked(){
@@ -34,11 +39,16 @@ void mouseClicked(){
 
 
 void draw() {
+  int passedTime = millis() - savedTime;
+  if (passedTime > 1000){
+    blueShips++;
+    savedTime = millis();
+  }
   background(bg);
   image(red, redx, redy);
   image(blue, bluex, bluey);
   image(gray, grayx, grayy);
-  text("hi", redx, redy);
+  text(""+blueShips, redx+45, redy+50);
   circle.display();
   circle2.display();
   circle3.display();
