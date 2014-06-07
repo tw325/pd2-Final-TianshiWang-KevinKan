@@ -6,10 +6,10 @@ int redy = 200;
 
 void setup(){
   size (640,480);
-  bg = loadImage("background.jpg");
-  red = loadImage("red.png");
-  blue = loadImage("blue.png");
-  gray = loadImage("gray.png");
+  bg = loadImage("img/background.jpg");
+  red = loadImage("img/red2.png");
+  blue = loadImage("img/blue2.png");
+  gray = loadImage("img/gray2.png");
 }
 
 void mouseClicked(){
