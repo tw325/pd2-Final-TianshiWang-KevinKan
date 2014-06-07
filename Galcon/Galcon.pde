@@ -1,4 +1,4 @@
-PImage bg, red, blue, gray;
+PImage bg, red, blue, gray, cursor;
 boolean clicked = false;
 int redx = 100;
 int redy = 200;
@@ -11,11 +11,13 @@ ring circle2 = new ring(grayx, grayy);
 ring circle3 = new ring(bluex, bluey);
 
 void setup(){
+  noCursor();
   size (640,480);
   bg = loadImage("img/background.jpg");
   red = loadImage("img/red2.png");
   blue = loadImage("img/blue2.png");
   gray = loadImage("img/gray2.png");
+  cursor = loadImage("img/cursor.png");
 }
 
 void mouseClicked(){
@@ -40,6 +42,7 @@ void draw() {
   circle.display();
   circle2.display();
   circle3.display();
+  image(cursor, mouseX-16, mouseY-16);
   if(mousePressed){
     stroke(180,0,0);
     noFill();
