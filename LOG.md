@@ -4,12 +4,14 @@ LOG
 **06.03.14**<br>
 *Kevin Kan* <br>
 - began the basic setup (void, draw, background, etc)
+
 *Tyler Wang* 
 - inspiration search
 
 **06.04.14**<br>
 *Kevin Kan* <br>
 - chose image for spaceship, red planet and blue planet
+
 *Tyler Wang* <br>
 - chose image for background
 - scaled images
@@ -18,6 +20,7 @@ LOG
 *Tyler Wang* <br>
 - decided new images for background, gray planet, red planet, and blue planet
 - scaled new images
+
 *Kevin Kan* <br>
 - placed planets on image.
 - created spaceship class.
