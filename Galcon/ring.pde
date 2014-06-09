@@ -1,12 +1,13 @@
 class ring{ //CLASSES MUST BE .PDE FILES
   
   int x, y; 
-  final int diameter = 100; // of ring
+  int diameter; // of ring
   boolean on = false; // useful for later on if Mouseclicked
   
-  ring(int xpos, int ypos) {
-    x = xpos+47; //47 accounts for radius of circle
-    y = ypos+47;
+  ring(int xpos, int ypos, int d) {
+    x = xpos+ (d/2) ; 
+    y = ypos+ (d/2) ;
+    diameter = d + 3;
   }
   
   void setOn(){
