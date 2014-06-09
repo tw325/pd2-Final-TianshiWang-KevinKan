@@ -10,7 +10,7 @@ Kevin Kan - chose image for spaceship, red planet and blue planet<br>
 Tyler Wang - chose image for background<br>
 	   - scaled images<br>
 
-06.06.14
+06.06.14<br>
 Tyler Wang - decided new images for background, gray planet, red planet, and blue planet<br>
 	   - scaled new images<br>
 Kevin Kan - placed planets on image.<br>
@@ -22,7 +22,7 @@ Tyler Wang - Established Background<br>
 	   - Made ring class to highlight planets<br>
 	   - Made planet image sizes equal(96x96)<br>
 
-06.08.14
+06.08.14<br>
 Kevin Kan - Created planets of different sizes (Small are 72x72, medium are 96x96, large are  120x120)<br>
 	  - Ring constructor adjusted to specifics of images<br>
 	  - Added different rates for spaceship production<br>
