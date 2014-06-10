@@ -48,7 +48,4 @@ LOG
 - Added in ring creation (simple version)
 - Created spaceship class.
 
-*Tyler Wang* <br>
-- Created planet class which constructs each planet with center, color, radius, and spaceships
-- Attempted to incorporate planets in an array
 
