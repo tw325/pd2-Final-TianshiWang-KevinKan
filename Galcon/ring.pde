@@ -4,6 +4,12 @@ class ring{ //CLASSES MUST BE .PDE FILES
   int diameter; // of ring
   boolean on = false; // useful for later on if Mouseclicked
   
+  ring(){
+    x = 0;
+    y = 0;
+    diameter = 0;
+  }
+  
   ring(int xpos, int ypos, int d) {
     x = xpos+ (d/2) ; 
     y = ypos+ (d/2) ;
