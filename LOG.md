@@ -41,4 +41,10 @@ LOG
 (gray planets have a 50% chance of producing a ship)
 - Enabled highlighting of all planets and up to 2 highlights only. 
 
+**06.09.14**<br>
+*Kevin/Tyler* - Pair Programming <br>
+- resized planets
+- resized spaceships
+- more variables and code into planet.pde
+
 
