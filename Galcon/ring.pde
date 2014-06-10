@@ -1,19 +1,13 @@
-class ring{ //CLASSES MUST BE .PDE FILES
+class ring{
 
   int x, y; 
-  int diameter; // of ring
+  int radius; 
   boolean on = false; // useful for later on if Mouseclicked
-  
-  ring(){
-    x = 0;
-    y = 0;
-    diameter = 0;
-  }
-  
-  ring(int xpos, int ypos, int d) {
-    x = xpos+ (d/2) ; 
-    y = ypos+ (d/2) ;
-    diameter = d + 3;
+
+  ring(int xcor, int ycor, int r) {
+    x = xcor; 
+    y = ycor;
+    radius = r;
   }
   
   void setOn(){
@@ -29,9 +23,9 @@ class ring{ //CLASSES MUST BE .PDE FILES
     if (on == true) {
       ellipseMode(CENTER); // sets xcor and ycor to center
       noFill(); // ring with no fill
-      strokeWeight(2); // thickness of ring
+      strokeWeight(3); // thickness of ring
       stroke(0, 180, 0); // green color
-      ellipse(x, y, diameter, diameter); 
+      ellipse(x, y, radius*2, radius*2); 
     }
   }
   

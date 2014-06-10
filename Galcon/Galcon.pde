@@ -20,7 +20,6 @@ planet[] plist = new planet[10];
 int savedTime;
 int numRings;
 
-ring ring1 = new ring(), ring2 = new ring();
 
 void setup(){
   noCursor();
@@ -37,15 +36,13 @@ void setup(){
   plist[1] = p1;
   savedTime = millis();
 }
-boolean mouseInRadius(planet p){
-  return (mouseX<p.getX()+p.getRadius()) && (mouseX>=p.getX()-p.getRadius()) && (mouseY<p.getY()+p.getRadius()) && (mouseY>=p.getY()-p.getRadius());
-} 
+
+
 void mouseClicked(){
-  if (mouseInRadius(p0)){
-    ring1 = new ring(p0.getX()-p0.getRadius(), p0.getY()-p0.getRadius(), p0.getRadius()*2);
-    ring1.setOn();
-  };   /*
-  if (p0.getDistance(mouseX, mouseY)<p0.getRadius()){
+  if (p0.mouseInRadius()){
+    p0.displayRing();
+  }   
+  /*if (p0.getDistance(mouseX, mouseY)<p0.getRadius()){
     if (rcircle1.on == false){
       rcircle1.setOn();
       numRings++;
@@ -53,79 +50,8 @@ void mouseClicked(){
       rcircle1.setOff();
       numRings--;
     }
-  }
-  if (mouseX<(red2x+96) && mouseX>red2x && mouseY<red2y+96 && mouseY>red2y){
-    if (rcircle2.on == false){
-      rcircle2.setOn();
-      numRings++;
-    }else{
-      rcircle2.setOff();
-      numRings--;
-    }
-  }
-  if (mouseX<(red3x+120) && mouseX>red3x && mouseY<red3y+120 && mouseY>red3y){
-    if (rcircle3.on == false){
-      rcircle3.setOn();
-      numRings++;
-    }else{
-      rcircle3.setOff();
-      numRings--;
-    }
-  }
-  if (mouseX<(gray1x+72) && mouseX>gray1x && mouseY<gray1y+72 && mouseY>gray1y){
-    if (gcircle1.on == false){
-      gcircle1.setOn();
-      numRings++;
-    }else{
-      gcircle1.setOff();
-      numRings--;
-    }
-  }
-  if (mouseX<(gray2x+96) && mouseX>gray2x && mouseY<gray2y+96 && mouseY>gray2y){
-    if (gcircle2.on == false){
-      gcircle2.setOn();
-      numRings++;
-    }else{
-      gcircle2.setOff();
-      numRings--;
-    }
-  }
-  if (mouseX<(gray3x+120) && mouseX>gray3x && mouseY<gray3y+120 && mouseY>gray3y){
-    if (gcircle3.on == false){
-      gcircle3.setOn();
-      numRings++;
-    }else{
-      gcircle3.setOff();
-      numRings--;
-    }
-  }
-  if ((mouseX<(blue1x+72) && mouseX>blue1x && mouseY<blue1y+72 && mouseY>blue1y)){
-    if (bcircle1.on == false){
-      bcircle1.setOn();
-      numRings++;
-    }else{
-      bcircle1.setOff();
-      numRings--;
-    }
-  }
-  if ((mouseX<(blue2x+96) && mouseX>blue2x && mouseY<blue2y+96 && mouseY>blue2y)){
-    if (bcircle2.on == false){
-      bcircle2.setOn();
-      numRings++;
-    }else{
-      bcircle2.setOff();
-      numRings--;
-    }
-  }
-  if ((mouseX<(blue3x+120) && mouseX>blue3x && mouseY<blue3y+120 && mouseY>blue3y)){
-    if (bcircle3.on == false){
-      bcircle3.setOn();
-      numRings++;
-    }else{
-      bcircle3.setOff();
-      numRings--;
-    }
   }*/
+  
 }
 
 
@@ -139,38 +65,11 @@ void draw() {
   background(bg);
   image(p0.getPlanetImage(), p0.getX()-p0.getRadius(), p0.getY()-p0.getRadius());
   image(p1.getPlanetImage(), p1.getX()-p1.getRadius(), p1.getY()-p1.getRadius());
-  /*image(p2.getPlanetImage(), p2.getX(), p2.getY());
-  image(p3.getPlanetImage(), p3.getX(), p3.getY());  
-  image(p4.getPlanetImage(), p4.getX(), p4.getY());  
-  image(p5.getPlanetImage(), p5.getX(), p5.getY());*/
 
   text(""+p0.getNum(), p0.getX(), p0.getY());
   text(""+p1.getNum(), p0.getX(), p0.getY());
-  /*text(""+red2Ships, red2x+48, red2y+48);
-  text(""+red3Ships, red3x+60, red3y+60);
-  text(""+gray1Ships, gray1x+36, gray1y+36);
-  text(""+gray2Ships, gray2x+48, gray2y+48);
-  text(""+gray3Ships, gray3x+60, gray3y+60);
-  text(""+blue1Ships, blue1x+36, blue1y+36);
-  text(""+blue2Ships, blue2x+48, blue2y+48);
-  text(""+blue3Ships, blue3x+60, blue3y+60);
-  rcircle1.display();
-  rcircle2.display();
-  rcircle3.display();
-  gcircle1.display();
-  gcircle2.display();
-  gcircle3.display();
-  bcircle1.display();
-  bcircle2.display();
-  bcircle3.display();*/
-  ring1.display();
+  //p0.displayRing();
   image(cursor, mouseX-16, mouseY-16);
-  if(mousePressed){
-    stroke(180,0,0);
-    noFill();
-    strokeWeight(3);
-    ellipse(mouseX, mouseY, 30, 30);
-  }
 }
 
 

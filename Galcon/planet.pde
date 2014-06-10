@@ -6,6 +6,7 @@ class planet{
   int num;
   int xcor, ycor;
   boolean grow;
+  ring Ring;
   
   planet(int x, int y, int r, String c, int n){
     radius = r;
@@ -25,15 +26,7 @@ class planet{
       planetImage = loadImage("img/"+getColor()+"3.png");
     xcor = x + r;
     ycor = y + r;
-  }
-  
-  void setup(){
-    if (getRadius() == 36)
-      planetImage = loadImage("img/"+getColor()+"1.png");
-    if (getRadius() == 30)
-      planetImage = loadImage("img/"+getColor()+"2.png");
-    if (getRadius() == 24)
-      planetImage = loadImage("img/"+getColor()+"3.png");
+    Ring = new ring(xcor,ycor,r);
   }
   
   String getColor(){
@@ -63,6 +56,15 @@ class planet{
   PImage getPlanetImage(){
     return planetImage;
   }
+  
+  void displayRing(){
+    Ring.setOn();
+    Ring.display();
+  }
+
+  boolean mouseInRadius(){
+    return (getDistance(mouseX, mouseY) < radius);
+  } 
   
   void grow(){
     if (grow == true){

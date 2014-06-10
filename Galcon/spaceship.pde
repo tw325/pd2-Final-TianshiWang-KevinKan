@@ -23,4 +23,4 @@ class spaceship{
     return shipcolor;
   }
 
-    
+}
