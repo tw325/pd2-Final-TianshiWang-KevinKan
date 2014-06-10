@@ -42,6 +42,11 @@ LOG
 - Enabled highlighting of all planets and up to 2 highlights only. 
 
 **06.09.14**<br>
+*Kevin/Tyler* - Pair Programming <br>
+- resized planets
+- resized spaceships
+- more variables and code into planet.pde
+
 *Kevin Kan* <br>
 - Attempted to adjust code to better efficiency
 - Attempted again after Tyler's work
@@ -51,4 +56,5 @@ LOG
 *Tyler Wang* <br>
 - Created planet class which constructs each planet with center, color, radius, and spaceships
 - Attempted to incorporate planets in an array
+
 
