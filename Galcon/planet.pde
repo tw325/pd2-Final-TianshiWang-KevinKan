@@ -1,22 +1,31 @@
 class planet{
 
-  color planetColor;
-  int diameter;  
-  int num = 10;
+  String planetColor;
+  int radius;  
+  int num;
   int xcor, ycor;
+  boolean grow;
   
-  planet(int x, int y, int t, int sp){
-    if (/*default*/true){
-      numSpaceship = (int)(Math.random()*100 +20);
+  planet(int x, int y, int r, String c, int n){
+    xcor = x;
+    ycor = y;
+    radius = r;
+    planetColor = c;
+    num = n;
+    if (planetColor.equals("Gray")){
+      grow = false;
+    }
+    else if (planetColor.equals("Red") || planetColor.equals("Blue")){
+      grow = true;
     }
   }
   
-  color getColor(){
+  String getColor(){
     return planetColor;
   }
   
-  int getDiameter(){
-    return diameter;
+  int getRadius(){
+    return radius;
   }
   
   int getNum(){
@@ -31,9 +40,13 @@ class planet{
     return ycor;
   }
   
+  int distance(int x, int y){
+    return (int)(Math.sqrt(Math.pow(x-xcor,2) + Math.pow(y-ycor,2)));
+  }
   
-  boolean distance(int x, int y){
-    int radius = diameter/2;
-    return (int)(Math.sqrt(x*x + y*y))<=radius;
+  void grow(){
+    if (grow == true){
+      num++;
+    }
   }
 }
