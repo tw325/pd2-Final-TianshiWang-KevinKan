@@ -20,15 +20,7 @@ planet[] plist = new planet[10];
 int savedTime;
 int numRings;
 
-/*ring rcircle1 = new ring(p0.getX(), p0.getY(), p0.getRadius());
-ring rcircle2 = new ring(red2x, red2y, 96);
-ring rcircle3 = new ring(red3x, red3y, 120);
-ring gcircle1 = new ring(gray1x, gray1y, 72);
-ring gcircle2 = new ring(gray2x, gray2y, 96);
-ring gcircle3 = new ring(gray3x, gray3y, 120);
-ring bcircle1 = new ring(blue1x, blue1y, 72);
-ring bcircle2 = new ring(blue2x, blue2y, 96);
-ring bcircle3 = new ring(blue3x, blue3y, 120);*/
+ring ring1 = new ring(), ring2 = new ring();
 
 void setup(){
   noCursor();
@@ -45,20 +37,14 @@ void setup(){
   plist[1] = p1;
   savedTime = millis();
 }
-
- void mouseClicked(){
-  /*if (numRings>=2){
-    rcircle1.setOff();
-    rcircle2.setOff();
-    rcircle3.setOff();
-    gcircle1.setOff();
-    gcircle2.setOff();
-    gcircle3.setOff();
-    bcircle1.setOff();
-    bcircle2.setOff();
-    bcircle3.setOff();
-    numRings = 0;
-  }
+boolean mouseInRadius(planet p){
+  return (mouseX<p.getX()+p.getRadius()) && (mouseX>=p.getX()-p.getRadius()) && (mouseY<p.getY()+p.getRadius()) && (mouseY>=p.getY()-p.getRadius());
+} 
+void mouseClicked(){
+  if (mouseInRadius(p0)){
+    ring1 = new ring(p0.getX()-p0.getRadius(), p0.getY()-p0.getRadius(), p0.getRadius()*2);
+    ring1.setOn();
+  };   /*
   if (p0.getDistance(mouseX, mouseY)<p0.getRadius()){
     if (rcircle1.on == false){
       rcircle1.setOn();
@@ -159,6 +145,7 @@ void draw() {
   image(p5.getPlanetImage(), p5.getX(), p5.getY());*/
 
   text(""+p0.getNum(), p0.getX(), p0.getY());
+  text(""+p1.getNum(), p0.getX(), p0.getY());
   /*text(""+red2Ships, red2x+48, red2y+48);
   text(""+red3Ships, red3x+60, red3y+60);
   text(""+gray1Ships, gray1x+36, gray1y+36);
@@ -176,6 +163,7 @@ void draw() {
   bcircle1.display();
   bcircle2.display();
   bcircle3.display();*/
+  ring1.display();
   image(cursor, mouseX-16, mouseY-16);
   if(mousePressed){
     stroke(180,0,0);
