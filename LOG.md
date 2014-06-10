@@ -41,4 +41,11 @@ LOG
 (gray planets have a 50% chance of producing a ship)
 - Enabled highlighting of all planets and up to 2 highlights only. 
 
+**06.09.14**<br>
+*Kevin Kan* <br>
+- Attempted to adjust code to better efficiency
+- Attempted again after Tyler's work
+- Added in ring creation (simple version)
+- Created spaceship class.
+
 
