@@ -56,11 +56,12 @@ class planet{
   PImage getPlanetImage(){
     return planetImage;
   }
-  void ringToggle(){
-    if (Ring.on == false)
-      Ring.setOn();
-    else
-      Ring.setOff();
+
+  void ringOn(){
+    Ring.setOn();
+  }
+  void ringOff(){
+    Ring.setOff();
   }
   void displayRing(){
 //    Ring.setOn();
