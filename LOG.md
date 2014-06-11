@@ -57,4 +57,13 @@ LOG
 - Created planet class which constructs each planet with center, color, radius, and spaceships
 - Attempted to incorporate planets in an array
 
+**06.10.14**<br>
+*Kevin/Tyler* - Pair Programming <br>
+- started ring creation again. 
+
+**06.11.14** <br>
+*Kevin/Tyler* - Pair Programming <br>
+- Set up ring creation
+
+
 
