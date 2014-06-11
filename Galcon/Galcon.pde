@@ -18,7 +18,7 @@ int blue3x = 500; int blue3y = 300;
 planet[] plist = new planet[2];
 
 int savedTime;
-int numRings;
+int clicks;
 
 
 void setup(){
@@ -40,20 +40,17 @@ void setup(){
 
 void mouseClicked(){
   for (planet x: plist){
-    if (numRings > 2){
-      x.ringOff();
-      numRings--;
-    }
-    if (x.mouseInRadius() && x.Ring.on == false){
+    if (x.mouseInRadius() && x.Ring.on == false && clicks <2){
       x.ringOn();
-      numRings++;
-    }else if (x.mouseInRadius() && x.Ring.on){
+      clicks++;
+    }
+    else if (x.mouseInRadius() && x.Ring.on && clicks >2){
       x.ringOff();
-      numRings--;
+      clicks--;
     }
     else{
       x.ringOff();
-      numRings--;
+      clicks--;
     }
   }
   
