@@ -40,7 +40,7 @@ void setup(){
 
 void mouseClicked(){
   if (p0.mouseInRadius()){
-    p0.displayRing();
+    p0.ringToggle();
   }   
   /*if (p0.getDistance(mouseX, mouseY)<p0.getRadius()){
     if (rcircle1.on == false){
@@ -68,7 +68,7 @@ void draw() {
 
   text(""+p0.getNum(), p0.getX(), p0.getY());
   text(""+p1.getNum(), p0.getX(), p0.getY());
-  //p0.displayRing();
+  p0.displayRing();
   image(cursor, mouseX-16, mouseY-16);
 }
 
