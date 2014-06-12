@@ -8,10 +8,10 @@ class planet{
   boolean grow;
   ring Ring;
   
-  planet(int x, int y, int r, String c, int n){
+  planet(int x, int y, int r, String c){
+    num = (int)(Math.random() * 10) + r;
     radius = r;
     planetColor = c;
-    num = n;
     if (planetColor.equals("gray")){
       grow = false;
     }
@@ -64,7 +64,6 @@ class planet{
     Ring.setOff();
   }
   void displayRing(){
-//    Ring.setOn();
     Ring.display();
   }
 
