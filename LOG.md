@@ -59,11 +59,20 @@ LOG
 
 **06.10.14**<br>
 *Kevin/Tyler* - Pair Programming <br>
-- started ring creation again. 
+- added planet class
+- started ring creation again - encountered problems 
 
 **06.11.14** <br>
 *Kevin/Tyler* - Pair Programming <br>
-- Set up ring creation
+- Worked on ring creation -> partially fixed.
+- Ring can toggle, but can not recognize only 2 rings
+
+*Kevin* <br>
+- Fixed Ring functionality. (inRadiusAny(), allOff())
+- Added line drawing! when linking 2 planets (linesave(), line())
+- Note: very important to organize what needs to show up on top and bottom with the draw() function.
+
+
 
 
 
