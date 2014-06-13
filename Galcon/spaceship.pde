@@ -24,5 +24,9 @@ class spaceship{
   color getColor(){
     return shipcolor;
   }
+//~5 ships = 1 image
+//max 20 images
+//so sending over 100 ships will still create 20 images
+//# ships sent less than 100 will be divided by 5 and rounded up (+1). 
 
 }

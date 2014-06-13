@@ -67,6 +67,15 @@ void mouseClicked(){
       allOff();
 }
 
+void mouseOver(){
+  for (planet x: plist){
+    if (x.mouseInRadius() && !x.Ring.on){
+      x.ringOn();
+    }
+  }
+}
+
+
 int xsave1, ysave1, xsave2, ysave2;
 void linesave(){
   for (int i = 0; i< plist.length; i++){
@@ -80,7 +89,7 @@ void linesave(){
     }
   }
 }
-
+// check for mouseX mouseY and see if clicked == true
 void draw() {
   background(bg);
   if (clicks == 2){
