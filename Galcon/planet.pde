@@ -8,6 +8,7 @@ class planet{
   boolean grow;
   ring Ring;
   
+  
   planet(int x, int y, int r, String c){
     num = (int)(Math.random() * 10) + r;
     radius = r;
