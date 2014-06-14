@@ -1,9 +1,12 @@
 PImage bg, cursor;
 boolean clicked = false;
 planet p0,p1,p2,p3,p4,p5;
-
 planet[] plist = new planet[6];
 
+spaceship sp;
+spaceship sp1;
+spaceship sp2;
+spaceship[] splist = new spaceship[3];
 
 int savedTime;
 int clicks = 0;
@@ -19,6 +22,12 @@ void setup(){
   p3 = new planet(200, 220, 24, "gray");
   p4 = new planet(350, 100, 36, "gray");
   p5 = new planet(420, 80, 30, "gray");
+  sp = new spaceship(380, 240, p0, p1, 5); //CHANGES
+  sp1 = new spaceship(420, 270, p0, p1, 5);
+  sp2 = new spaceship(400, 250, p0, p1, 5);
+  splist[0] = sp;
+  splist[1] = sp1;
+  splist[2] = sp2;
   plist[0] = p0;
   plist[1] = p1;
   plist[2] = p2;
@@ -28,7 +37,7 @@ void setup(){
   savedTime = millis();
 }
 
-boolean inRadiusAny(){ //if the mouse is within any planet
+boolean inRadiusAny(){
   for (planet x: plist){
     if (x.getDistance(mouseX, mouseY) < x.radius)
       return true;
@@ -103,7 +112,13 @@ void draw() {
     x.displayRing();
     text(""+x.num, x.xcor-10, x.ycor+5);
   }
+  
   image(cursor, mouseX-16, mouseY-16);
+  
+  for (spaceship s: splist){
+    s.frame();
+  }
+  
 }
 
 

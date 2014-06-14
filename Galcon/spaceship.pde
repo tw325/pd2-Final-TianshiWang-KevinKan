@@ -18,9 +18,9 @@ class spaceship{
     quantity = q;
     shipcolor = h.getColor();
     if (shipcolor.equals("blue"))
-      spaceshipImage = loadImage("BlueSpaceship.png");
+      spaceshipImage = loadImage("img/BlueSpaceship.png");
     if (shipcolor.equals("red"))
-      spaceshipImage = loadImage("RedSpaceship.png");
+      spaceshipImage = loadImage("img/RedSpaceship.png");
   }
   
   int getX(){
@@ -29,6 +29,16 @@ class spaceship{
 
   int getY(){
     return ycor;
+  }
+  
+  float getAngle(){
+    float x1 = home.getX();
+    float y1 = home.getY();
+    float x2 = target.getX();
+    float y2 = target.getY();
+    float angle = atan((y2-y1)/(x2-x1));
+    println(angle);
+    return angle;
   }
 
   String getColor(){
@@ -53,11 +63,12 @@ class spaceship{
     on = true;
   }
   
-  void display() {
-    if (on == true) {
-      
-    }
+  void frame(){
+    translate(getX(), getY());
+    rotate(getAngle()+PI/2);
+    image(getSpaceshipImage(), 0, 0); //displays spaceship
+    text(""+getQuantity(), 0, 0);
+    resetMatrix();
   }
-
 
 }
