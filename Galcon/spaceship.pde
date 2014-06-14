@@ -58,6 +58,6 @@ class spaceship{
       
     }
   }
->>>>>>> c280b615b9ac21fd6a94b93800d0b8d556784525
+
 
 }

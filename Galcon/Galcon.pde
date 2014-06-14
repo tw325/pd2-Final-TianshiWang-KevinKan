@@ -60,15 +60,6 @@ void mousePressed(){
       allOff();
 }
 
-void mouseOver(){
-  for (planet x: plist){
-    if (x.mouseInRadius() && !x.Ring.on){
-      x.ringOn();
-    }
-  }
-}
-
-
 int xsave1, ysave1, xsave2, ysave2;
 void linesave(){
   for (int i = 0; i< plist.length; i++){
@@ -86,6 +77,11 @@ void linesave(){
 
 void draw() {
   background(bg);
+  for (planet x: plist){
+    if (clicks <= 1 && x.mouseInRadius() && x.planetColor == "red"){
+      x.ringOn();
+    }
+  }
   if (clicks == 2){
     linesave();
     line(xsave1, ysave1, xsave2, ysave2);
