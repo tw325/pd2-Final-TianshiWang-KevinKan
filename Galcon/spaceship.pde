@@ -1,13 +1,13 @@
 class spaceship{
   PImage spaceshipImage; 
-  int xcor, ycor;
-  int dx; 
-  int dy;
+  float xcor, ycor;
+  float dx; 
+  float dy;
+  final float dHyp = 1;
   planet home;
   planet target;
   String shipcolor;
   int quantity;
-  int direction = 0; //angle
   boolean on = false;
   
   spaceship(int x, int y, planet h, planet t, int q){
@@ -21,28 +21,38 @@ class spaceship{
       spaceshipImage = loadImage("img/BlueSpaceship.png");
     if (shipcolor.equals("red"))
       spaceshipImage = loadImage("img/RedSpaceship.png");
+    on = true;
   }
   
-  int getX(){
-    return xcor;
-  }
-
-  int getY(){
-    return ycor;
-  }
   
   float getAngle(){
-    float x1 = home.getX();
-    float y1 = home.getY();
+    float x1 = xcor;
+    float y1 = ycor;
     float x2 = target.getX();
     float y2 = target.getY();
     float angle = atan((y2-y1)/(x2-x1));
+    if (x2>=x1 && y2 < y1)
+      angle += 3*PI/2;
+    else if (x2 < x1 && y2>=y1)
+      angle += PI/2;
+    else if (x2 < x1 && y2 < y1)
+      angle += PI;
     println(angle);
+    
     return angle;
   }
 
   String getColor(){
     return shipcolor;
+  }
+
+  void setV(){
+    float x1 = xcor;
+    float y1 = ycor;
+    float x2 = target.getX();
+    float y2 = target.getY();
+    dx = (dHyp * cos(getAngle()));
+    dy = (dHyp * sin(getAngle()));
   }
 
 //~5 ships = 1 image
@@ -62,13 +72,20 @@ class spaceship{
   void setOn(){
     on = true;
   }
-  
-  void frame(){
-    translate(getX(), getY());
-    rotate(getAngle()+PI/2);
-    image(getSpaceshipImage(), 0, 0); //displays spaceship
-    text(""+getQuantity(), 0, 0);
-    resetMatrix();
-  }
 
+  void move(){
+    if (on){
+      translate(xcor, ycor);
+      rotate(getAngle()+PI/2);
+      image(getSpaceshipImage(), 0, 0); //displays spaceship
+      text(""+getQuantity(), 0, 0);
+      resetMatrix();
+      xcor+=dx;
+      ycor+=dy;
+      if (target.getDistance((int)xcor, (int)ycor)<20){ //CAUSES LOSS OF PLANET NUMBER
+        target.decrease(quantity);
+        on = false;
+      }
+    }
+  }
 }

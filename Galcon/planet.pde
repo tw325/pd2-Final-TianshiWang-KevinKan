@@ -11,7 +11,7 @@ class planet{
   
   
   planet(int x, int y, int r, String c){
-    num = (int)(Math.random() * 10) + r;
+    num = (int)(Math.random() * 30) + 2*r - 45;
     radius = r;
     planetColor = c;
     if (planetColor.equals("gray")){
@@ -19,6 +19,7 @@ class planet{
     }
     else if (planetColor.equals("red") || planetColor.equals("blue")){
       grow = true;
+      num = 100;
     }
     if (r == 36)
       planetImage = loadImage("img/"+getColor()+"1.png");
@@ -81,8 +82,13 @@ class planet{
   } 
   
   void grow(){
-    if (grow == true){
+    if (grow){
       num++;
     }
   }
+  
+  void decrease(int n){
+    num-=n;
+  }
 }
+

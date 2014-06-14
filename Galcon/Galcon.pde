@@ -10,8 +10,9 @@ spaceship[] splist = new spaceship[3];
 
 int ssave;
 int xsave1, ysave1, xsave2, ysave2;
-int savedTime;
 int clicks = 0;
+int savedTime1,savedTime2,savedTime3;
+
 
 void setup(){
   noCursor();
@@ -19,15 +20,15 @@ void setup(){
   bg = loadImage("img/background.jpg");
   cursor = loadImage("img/cursor.png");
   p0 = new planet(50, 50, 36, "blue");
-  p1 = new planet(500, 400, 36, "red");
+  p1 = new planet(500, 400, 30, "red");
   p2 = new planet(120, 90, 24, "gray");
   p3 = new planet(200, 220, 24, "gray");
   p4 = new planet(350, 100, 36, "gray");
   p5 = new planet(420, 80, 30, "gray");
   p6 = new planet(300, 250, 24, "blue");
 
-  sp = new spaceship(p0.xcor, p0.ycor, p0, p1, 5); //CHANGES
-  sp1 = new spaceship(p0.xcor, p0.ycor, p0, p1, 5);
+  sp = new spaceship(p1.xcor, p1.ycor, p1, p5, 5); //CHANGES
+  sp1 = new spaceship(p6.xcor, p6.ycor, p0, p3, 5);
   sp2 = new spaceship(p0.xcor, p0.ycor, p0, p1, 5);
   splist[0] = sp;
   splist[1] = sp1;
@@ -40,7 +41,10 @@ void setup(){
   plist[4] = p4;
   plist[5] = p5;
   plist[6] = p6;
-  savedTime = millis();
+  
+  savedTime1 = millis();
+  savedTime2 = millis();
+  savedTime3 = millis();
 }
 
 boolean inRadiusAny(){
@@ -142,13 +146,34 @@ void draw() {
     line(xsave1, ysave1, xsave2, ysave2);
     xsave1 = 0; ysave1 = 0; xsave2 = 0; ysave2 = 0;
   }
-  int passedTime = millis() - savedTime;
-  if (passedTime > 1000){
-    for (planet y: plist){
-      y.grow();
+  
+  int passedTime1 = millis() - savedTime1;  
+  int passedTime2 = millis() - savedTime2;
+  int passedTime3 = millis() - savedTime3;
+  if (passedTime1 > 500){
+    for (planet p: plist){
+      if (p.radius == 36)
+        p.grow();
     }
-    savedTime = millis();
+    savedTime1 = millis();
   }
+  if (passedTime2 > 750){
+    for (planet p: plist){
+      if (p.radius == 30){
+        p.grow();
+      }
+    }
+    savedTime2 = millis();
+  }
+  if (passedTime3 > 1000){
+    for (planet p: plist){
+      if (p.radius == 24){
+        p.grow();
+      }
+    }
+    savedTime3 = millis();
+  }
+
 
   for (planet x: plist){
     image(x.getPlanetImage(), x.xcor-x.radius, x.ycor-x.radius);
@@ -159,9 +184,15 @@ void draw() {
   image(cursor, mouseX-16, mouseY-16);
   
   for (spaceship s: splist){
-    s.frame();
+    s.move();
+    s.setV();
   }
   
+  if (keyPressed) {
+    if (key == ' ' || key == 'B') {
+      stop();
+    }
+  }
 }
 
 
