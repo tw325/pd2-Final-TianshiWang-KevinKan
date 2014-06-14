@@ -82,7 +82,7 @@ void draw() {
       x.ringOn();
     }
   }
-  if (clicks == 2){
+  if (clicks == 1){
     linesave();
     line(xsave1, ysave1, xsave2, ysave2);
     xsave1 = 0;
