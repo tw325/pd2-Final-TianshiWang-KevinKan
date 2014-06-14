@@ -26,9 +26,9 @@ void setup(){
   p5 = new planet(420, 80, 30, "gray");
   p6 = new planet(300, 250, 24, "blue");
 
-  sp = new spaceship(380, 240, p0, p1, 5); //CHANGES
-  sp1 = new spaceship(420, 270, p0, p1, 5);
-  sp2 = new spaceship(400, 250, p0, p1, 5);
+  sp = new spaceship(p0.xcor, p0.ycor, p0, p1, 5); //CHANGES
+  sp1 = new spaceship(p0.xcor, p0.ycor, p0, p1, 5);
+  sp2 = new spaceship(p0.xcor, p0.ycor, p0, p1, 5);
   splist[0] = sp;
   splist[1] = sp1;
   splist[2] = sp2;

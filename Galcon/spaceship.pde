@@ -1,8 +1,8 @@
 class spaceship{
   PImage spaceshipImage; 
   int xcor, ycor;
-  int dx = 2; 
-  int dy = 2;
+  int dx; 
+  int dy;
   planet home;
   planet target;
   String shipcolor;
