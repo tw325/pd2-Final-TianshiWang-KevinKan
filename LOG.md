@@ -74,7 +74,7 @@ LOG
 - 
 
 **06.13.14**<br>
-*Tyler Wang* - Pair Programming <br>
+*Tyler Wang* <br>
 - Changed growth rates of planets based on size
 - Created spaceship class
 - Adjusted angle and speed of spaceships using trig formulas
