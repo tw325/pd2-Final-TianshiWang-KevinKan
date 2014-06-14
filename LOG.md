@@ -71,8 +71,14 @@ LOG
 - Fixed Ring functionality. (inRadiusAny(), allOff())
 - Added line drawing! when linking 2 planets (linesave(), line())
 - Note: very important to organize what needs to show up on top and bottom with the draw() function.
+- 
 
-
+**06.13.14**<br>
+*Tyler Wang* - Pair Programming <br>
+- Changed growth rates of planets based on size
+- Created spaceship class
+- Adjusted angle and speed of spaceships using trig formulas
+- Finished spaceship movement using rotate and translate methods
 
 
 
