@@ -78,7 +78,7 @@ void linesave(){
 void draw() {
   background(bg);
   for (planet x: plist){
-    if (clicks <= 1 && x.mouseInRadius() && x.planetColor == "red"){
+    if (clicks <= 1 && x.mouseInRadius() && x.planetColor.equals("blue")){
       x.ringOn();
     }
   }
