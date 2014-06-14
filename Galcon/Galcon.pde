@@ -8,7 +8,7 @@ spaceship sp1;
 spaceship sp2;
 spaceship[] splist = new spaceship[3];
 
-
+int ssave;
 int xsave1, ysave1, xsave2, ysave2;
 int savedTime;
 int clicks = 0;
@@ -74,17 +74,20 @@ void mousePressed(){
         if (clicks == 0){
           x.ringOn();
           clicks++;
+          ssave = x.num/2;
         }else if (clicks == 1 && x.Ring.on){
           allOn();
           clicks++;
         }else if (clicks == 1 && !x.Ring.on){
           x.ringOn();
           clicks++;
+          x.num = x.num - ssave;
         }
       }else if (!(x.planetColor.equals("blue"))){
         if (clicks == 1){
           x.ringOn();
           clicks++;
+          x.num = x.num - ssave;
         }
       }
     }
