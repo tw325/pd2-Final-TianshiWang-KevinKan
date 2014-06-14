@@ -7,6 +7,7 @@ class planet{
   int xcor, ycor;
   boolean grow;
   ring Ring;
+  ring HoverRing;
   
   
   planet(int x, int y, int r, String c){
@@ -27,7 +28,8 @@ class planet{
       planetImage = loadImage("img/"+getColor()+"3.png");
     xcor = x + r;
     ycor = y + r;
-    Ring = new ring(xcor,ycor,r);
+    Ring = new ring(xcor,ycor,r, false);
+    HoverRing = new ring(xcor,ycor,r, true);
   }
   
   String getColor(){
@@ -57,14 +59,20 @@ class planet{
   PImage getPlanetImage(){
     return planetImage;
   }
-
+  void hoverRingOn(){
+    HoverRing.setOn();
+  }
   void ringOn(){
     Ring.setOn();
+  }
+  void hoverRingOff(){
+    HoverRing.setOff();
   }
   void ringOff(){
     Ring.setOff();
   }
   void displayRing(){
+    HoverRing.display();
     Ring.display();
   }
 
