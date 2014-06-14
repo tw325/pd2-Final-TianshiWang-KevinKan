@@ -1,18 +1,13 @@
 PImage bg, cursor;
 boolean clicked = false;
-<<<<<<< HEAD
-planet p0,p1,p2,p3,p4,p5;
-planet[] plist = new planet[6];
+planet p0,p1,p2,p3,p4,p5,p6;
+planet[] plist = new planet[7];
 
 spaceship sp;
 spaceship sp1;
 spaceship sp2;
 spaceship[] splist = new spaceship[3];
-=======
-planet p0,p1,p2,p3,p4,p5,p6;
 
-planet[] plist = new planet[7];
->>>>>>> 5e50a33499d6c94ef3b052ab5feb4effa65ad9f9
 
 int xsave1, ysave1, xsave2, ysave2;
 int savedTime;
@@ -29,16 +24,15 @@ void setup(){
   p3 = new planet(200, 220, 24, "gray");
   p4 = new planet(350, 100, 36, "gray");
   p5 = new planet(420, 80, 30, "gray");
-<<<<<<< HEAD
+  p6 = new planet(300, 250, 24, "blue");
+
   sp = new spaceship(380, 240, p0, p1, 5); //CHANGES
   sp1 = new spaceship(420, 270, p0, p1, 5);
   sp2 = new spaceship(400, 250, p0, p1, 5);
   splist[0] = sp;
   splist[1] = sp1;
   splist[2] = sp2;
-=======
-  p6 = new planet(300, 250, 24, "blue");
->>>>>>> 5e50a33499d6c94ef3b052ab5feb4effa65ad9f9
+
   plist[0] = p0;
   plist[1] = p1;
   plist[2] = p2;
