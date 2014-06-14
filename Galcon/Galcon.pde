@@ -82,11 +82,8 @@ void linesave(){
     }
   }
 }
-<<<<<<< HEAD
 // check for mouseX mouseY and see if clicked == true
-=======
-int a= 0;
->>>>>>> c280b615b9ac21fd6a94b93800d0b8d556784525
+
 void draw() {
   background(bg);
   if (clicks == 2){
