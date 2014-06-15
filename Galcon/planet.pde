@@ -8,7 +8,7 @@ class planet{
   boolean grow;
   ring Ring;
   ring HoverRing;
-  
+//  spaceship[] splist;
   
   planet(int x, int y, int r, String c){
     num = (int)(Math.random() * 30) + 2*r - 45;
@@ -31,6 +31,7 @@ class planet{
     ycor = y + r;
     Ring = new ring(xcor,ycor,r, false);
     HoverRing = new ring(xcor,ycor,r, true);
+//    splist = new spaceship[num];
   }
   
   String getColor(){
@@ -88,7 +89,7 @@ class planet{
   }
   
   void decrease(int n){
-    num-=n;
+    num = num - n;
   }
 }
 

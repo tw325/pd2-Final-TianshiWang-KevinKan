@@ -1,3 +1,14 @@
+/*
+My hypothesis?
+We should put the spaceship array in the planet class
+and then create the spaceships in the galcon class?
+i think we should do this so that each spaceship is connected
+to the planets like the rings are. 
+the home planet is easily set. 
+
+i like what you did so far though!
+*/
+
 PImage bg, cursor;
 boolean clicked = false;
 planet p0,p1,p2,p3,p4,p5,p6;
@@ -8,6 +19,7 @@ spaceship sp1;
 spaceship sp2;
 spaceship[] splist = new spaceship[3];
 
+boolean menu = true;
 int ssave;
 int xsave1, ysave1, xsave2, ysave2;
 int clicks = 0;
@@ -72,6 +84,9 @@ void allOn(){
 }
 
 void mousePressed(){
+  if (menu && mouseX< 400 && mouseX > 220 && mouseY < 290 && mouseY > 190){
+    menu = false;
+  }
   for (planet x: plist){
     if (x.mouseInRadius()){
       if (x.planetColor.equals("blue")){
@@ -117,82 +132,97 @@ void linesave(){
 
 void draw() {
   background(bg);
-  for (planet x: plist){
-    if (x.mouseInRadius()){
-      if (clicks == 0){
-        if (x.planetColor.equals("blue"))
-          x.hoverRingOn();
-      }
-      if (clicks == 1){
-        if (x.planetColor.equals("blue")){
-          x.hoverRingOn();
+  if (menu){
+    noFill();
+    strokeWeight(4);
+    rect(220, 190, 200, 100, 7);
+    textSize(30);
+    fill(0);
+    text("Start", 290, 250);
+    /*
+    if (mouseX< 400 && mouseX > 220 && mouseY < 290 && mouseY > 190)
+      menu = false;
+    */
+  }
+  else if (!menu){
+    for (planet x: plist){
+      if (x.mouseInRadius()){
+        if (clicks == 0){
+          if (x.planetColor.equals("blue"))
+            x.hoverRingOn();
         }
-        if (!(x.planetColor.equals("blue"))){
-          x.hoverRingOn();
-          linesave();
-          stroke(175,250,250);
-          line(xsave1,ysave1,xsave2,ysave2);
-          xsave1 = 0; ysave1 = 0; xsave2 = 0; ysave2 = 0;
+        if (clicks == 1){
+          if (x.planetColor.equals("blue")){
+            x.hoverRingOn();
+          }
+          if (!(x.planetColor.equals("blue"))){
+            x.hoverRingOn();
+            linesave();
+            stroke(175,250,250);
+            line(xsave1,ysave1,xsave2,ysave2);
+            xsave1 = 0; ysave1 = 0; xsave2 = 0; ysave2 = 0;
+          }
+        }
+      }if (!x.mouseInRadius()){
+        x.hoverRingOff();
+      }
+    }
+     
+    if (clicks == 2){
+      linesave();
+      stroke(0,180,0);
+      line(xsave1, ysave1, xsave2, ysave2);
+      xsave1 = 0; ysave1 = 0; xsave2 = 0; ysave2 = 0;
+    }
+    
+    int passedTime1 = millis() - savedTime1;  
+    int passedTime2 = millis() - savedTime2;
+    int passedTime3 = millis() - savedTime3;
+    if (passedTime1 > 500){
+      for (planet p: plist){
+        if (p.radius == 36)
+          p.grow();
+      }
+      savedTime1 = millis();
+    }
+    if (passedTime2 > 750){
+      for (planet p: plist){
+        if (p.radius == 30){
+          p.grow();
         }
       }
-    }if (!x.mouseInRadius()){
-      x.hoverRingOff();
+      savedTime2 = millis();
     }
-  }
-   
-  if (clicks == 2){
-    linesave();
-    stroke(0,180,0);
-    line(xsave1, ysave1, xsave2, ysave2);
-    xsave1 = 0; ysave1 = 0; xsave2 = 0; ysave2 = 0;
-  }
+    if (passedTime3 > 1000){
+      for (planet p: plist){
+        if (p.radius == 24){
+          p.grow();
+        }
+      }
+      savedTime3 = millis();
+    }
   
-  int passedTime1 = millis() - savedTime1;  
-  int passedTime2 = millis() - savedTime2;
-  int passedTime3 = millis() - savedTime3;
-  if (passedTime1 > 500){
-    for (planet p: plist){
-      if (p.radius == 36)
-        p.grow();
+  
+    for (planet x: plist){
+      image(x.getPlanetImage(), x.xcor-x.radius, x.ycor-x.radius);
+      x.displayRing();
+      textSize(12);
+      fill(0);
+      text(""+x.num, x.xcor-10, x.ycor+5);
     }
-    savedTime1 = millis();
-  }
-  if (passedTime2 > 750){
-    for (planet p: plist){
-      if (p.radius == 30){
-        p.grow();
+      
+    for (spaceship s: splist){
+      s.setV();
+      s.move();
+    }
+  
+    if (keyPressed) {
+      if (key == ' ' || key == 'B') {
+        stop();
       }
     }
-    savedTime2 = millis();
   }
-  if (passedTime3 > 1000){
-    for (planet p: plist){
-      if (p.radius == 24){
-        p.grow();
-      }
-    }
-    savedTime3 = millis();
-  }
-
-
-  for (planet x: plist){
-    image(x.getPlanetImage(), x.xcor-x.radius, x.ycor-x.radius);
-    x.displayRing();
-    text(""+x.num, x.xcor-10, x.ycor+5);
-  }
-  
   image(cursor, mouseX-16, mouseY-16);
-  
-  for (spaceship s: splist){
-    s.move();
-    s.setV();
-  }
-  
-  if (keyPressed) {
-    if (key == ' ' || key == 'B') {
-      stop();
-    }
-  }
 }
 
 
