@@ -11,7 +11,7 @@ the home planet is easily set.
 PImage bg, cursor, logo, pause, play;
 boolean clicked = false;
 planet p0,p1,p2,p3,p4,p5,p6;
-planet selected, target;
+planet choice1, choice2;
 planet[] plist = new planet[7];
 
 spaceship sp;
@@ -22,7 +22,6 @@ spaceship[] splist = new spaceship[3];
 boolean menu = true;
 boolean pauseState = false;
 int ssave;
-int xsave1, ysave1, xsave2, ysave2;
 int clicks = 0;
 int savedTime1,savedTime2,savedTime3;
 
@@ -75,6 +74,8 @@ void allOff(){
   for (planet x: plist){
     x.ringOff();
     x.hoverRingOff();
+    choice1 = null;
+    choice2 = null;
   }
   clicks = 0;
 }
@@ -101,20 +102,29 @@ void mousePressed(){
           if (clicks == 0){
             x.ringOn();
             clicks++;
-            selected = x;
+            choice1 = x;
           }else if (clicks == 1 && x.Ring.on){
             allOn();
             clicks++;
+            choice2 = x;
+            stroke(0, 180, 0);
+            line(choice1.xcor, choice1.ycor, choice2.xcor, choice2.ycor);
           }else if (clicks == 1 && !x.Ring.on){
             x.ringOn();
             clicks++;
             x.num = x.num - ssave;
+            choice2 = x;
+            stroke(0, 180, 0);
+            line(choice1.xcor, choice1.ycor, choice2.xcor, choice2.ycor);
           }
         }else if (!(x.planetColor.equals("blue"))){
           if (clicks == 1){
             x.ringOn();
             clicks++;
             x.num = x.num - ssave;
+            choice2 = x;
+            stroke(0, 180, 0);
+            line(choice1.xcor, choice1.ycor, choice2.xcor, choice2.ycor);
           }
         }
       }
@@ -125,18 +135,6 @@ void mousePressed(){
 }
 
 
-void linesave(){
-  for (int i = 0; i< plist.length; i++){
-    if ((plist[i].Ring.on || plist[i].HoverRing.on)&& xsave1 == 0){
-      xsave1 = plist[i].xcor;
-      ysave1 = plist[i].ycor;
-    }
-    else if ((plist[i].Ring.on || plist[i].HoverRing.on) && xsave1 != 0){
-      xsave2 = plist[i].xcor;
-      ysave2 = plist[i].ycor;
-    }
-  }
-}
 void button(String text, int xcor, int ycor, int w, int h, int size){
   fill(210,255,255, 80);
   strokeWeight(4);
@@ -165,6 +163,8 @@ void draw() {
     fill(0);
     stroke(210,255,255);
     text("GAME PAUSED", 150, 250);
+    if (keyPressed && key == ' ')
+      pauseState = false;
   }
   else if (!menu && !pauseState){
     image(pause, 0, 0);
@@ -173,32 +173,30 @@ void draw() {
         if (clicks == 0){
           if (x.planetColor.equals("blue"))
             x.hoverRingOn();
+            choice1 = x;
         }
         if (clicks == 1){
           if (x.planetColor.equals("blue")){
             x.hoverRingOn();
-            linesave();
+            choice2 = x;
             stroke(175,250,250);
-            line(xsave1,ysave1,xsave2,ysave2);
+            line(choice1.xcor, choice1.ycor, choice2.xcor, choice2.ycor);
           }
           if (!(x.planetColor.equals("blue"))){
             x.hoverRingOn();
-            linesave();
+            choice2 = x;
             stroke(175,250,250);
-            line(xsave1,ysave1,xsave2,ysave2);
-            xsave1 = 0; ysave1 = 0; xsave2 = 0; ysave2 = 0;
+            line(choice1.xcor, choice1.ycor, choice2.xcor, choice2.ycor);
           }
         }
       }if (!x.mouseInRadius()){
-        x.hoverRingOff();
+         x.hoverRingOff();
       }
     }
      
     if (clicks == 2){
-      linesave();
       stroke(0,180,0);
-      line(xsave1, ysave1, xsave2, ysave2);
-      xsave1 = 0; ysave1 = 0; xsave2 = 0; ysave2 = 0;
+      line(choice1.xcor, choice1.ycor, choice2.xcor, choice2.ycor);
     }
     
     int passedTime1 = millis() - savedTime1;  
@@ -243,9 +241,10 @@ void draw() {
     }
   
     if (keyPressed) {
-      if (key == ' ' || key == 'B') {
-        stop();
-      }
+      if (key == 'm') 
+        menu = true;
+      if (key == ' ') 
+        pauseState = true;
     }
   }
   image(cursor, mouseX-16, mouseY-16);
