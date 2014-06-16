@@ -6,12 +6,12 @@ i think we should do this so that each spaceship is connected
 to the planets like the rings are. 
 the home planet is easily set. 
 
-i like what you did so far though!
 */
 
 PImage bg, cursor, logo, pause, play;
 boolean clicked = false;
 planet p0,p1,p2,p3,p4,p5,p6;
+planet selected, target;
 planet[] plist = new planet[7];
 
 spaceship sp;
@@ -101,7 +101,7 @@ void mousePressed(){
           if (clicks == 0){
             x.ringOn();
             clicks++;
-            ssave = x.num/2;
+            selected = x;
           }else if (clicks == 1 && x.Ring.on){
             allOn();
             clicks++;
@@ -177,6 +177,9 @@ void draw() {
         if (clicks == 1){
           if (x.planetColor.equals("blue")){
             x.hoverRingOn();
+            linesave();
+            stroke(175,250,250);
+            line(xsave1,ysave1,xsave2,ysave2);
           }
           if (!(x.planetColor.equals("blue"))){
             x.hoverRingOn();
