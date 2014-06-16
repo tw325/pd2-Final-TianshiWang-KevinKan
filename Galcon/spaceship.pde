@@ -80,7 +80,7 @@ class spaceship{
       resetMatrix();
       xcor+=dx;
       ycor+=dy;
-      if (target.getDistance((int)xcor, (int)ycor)<20){ //CAUSES LOSS OF PLANET NUMBER
+      if (target.getDistance((int)xcor, (int)ycor)<target.radius){ //CAUSES LOSS OF PLANET NUMBER
         if (shipcolor.equals(target.planetColor)){
           target.increase(quantity);
         }
@@ -94,5 +94,10 @@ class spaceship{
         on = false;
       }
     }
+  }
+  
+  void draw(){
+    setV();
+    move();
   }
 }

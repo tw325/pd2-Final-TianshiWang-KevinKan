@@ -8,7 +8,7 @@ class planet{
   boolean grow;
   ring Ring;
   ring HoverRing;
-//  spaceship[] splist;
+  ArrayList<spaceship> splist = new ArrayList<spaceship>();
   
   planet(int x, int y, int r, String c){
     num = (int)(Math.random() * 30) + 2*r - 45;
@@ -106,7 +106,23 @@ class planet{
       planetImage = loadImage("img/"+c+"3.png");
   }
   
-  void sendSpaceships(){
+  void sendSpaceships(planet t){
+    int amt = num/2+1;
+    if (amt<20){
+      while (amt>0){
+        sp = new spaceship(xcor, ycor, this, target, 1);
+        splist.add(sp);
+        amt--;
+      }
+    }
+    else if (amt<40){
+    }
+    else if (amt<60){
+    }
+    for (spaceship s : splist){
+      s.draw();
+    }
+    num -= amt;
   }
     
 }

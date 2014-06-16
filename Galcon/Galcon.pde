@@ -15,9 +15,7 @@ planet home, target;
 planet[] plist = new planet[7];
 
 spaceship sp;
-spaceship sp1;
-spaceship sp2;
-spaceship[] splist = new spaceship[3];
+//spaceship[] splist = new spaceship[3];
 
 boolean menu = true;
 boolean pauseState = false;
@@ -43,11 +41,6 @@ void setup(){
   p6 = new planet(300, 250, 24, "blue");
 
   sp = new spaceship(p1.xcor, p1.ycor, p1, p5, 5); //CHANGES
-  sp1 = new spaceship(p6.xcor, p6.ycor, p0, p3, 5);
-  sp2 = new spaceship(p0.xcor, p0.ycor, p0, p1, 5);
-  splist[0] = sp;
-  splist[1] = sp1;
-  splist[2] = sp2;
 
   plist[0] = p0;
   plist[1] = p1;
@@ -111,7 +104,7 @@ void mousePressed(){
             //line(home.xcor, home.ycor, target.xcor, target.ycor);
           }else if (clicks == 1 && !x.Ring.on){
             target = x;
-            //send ships
+            home.sendSpaceships(target);
             clicks++;
             allOff();
           }
@@ -234,10 +227,10 @@ void draw() {
       text(""+x.num, x.xcor-10, x.ycor+5);
     }
       
-    for (spaceship s: splist){
+    /*for (spaceship s: splist){
       s.setV();
       s.move();
-    }
+    }*/
   
     if (keyPressed) {
       if (key == 'm') 
