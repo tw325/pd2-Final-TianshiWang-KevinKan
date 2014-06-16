@@ -9,7 +9,7 @@ the home planet is easily set.
 i like what you did so far though!
 */
 
-PImage bg, cursor, logo;
+PImage bg, cursor, logo, pause, play;
 boolean clicked = false;
 planet p0,p1,p2,p3,p4,p5,p6;
 planet[] plist = new planet[7];
@@ -33,6 +33,8 @@ void setup(){
   bg = loadImage("img/background.jpg");
   cursor = loadImage("img/cursor.png");
   logo = loadImage("img/logo.png");
+  pause = loadImage("img/pause.png");
+  play = loadImage("img/play.png");
   p0 = new planet(50, 50, 36, "blue");
   p1 = new planet(500, 400, 30, "red");
   p2 = new planet(120, 90, 24, "gray");
@@ -89,7 +91,7 @@ void mousePressed(){
   if (menu && mouseX< 420 && mouseX > 220 && mouseY < 430 && mouseY > 350){
     menu = false;
   }
-  if (mouseX< 50 && mouseX > 0 && mouseY < 20 && mouseY> 0){
+  if (mouseX< 30 && mouseX > 0 && mouseY < 30 && mouseY> 0){
     pauseState = !pauseState;
   }
   else{
@@ -158,14 +160,14 @@ void draw() {
     button("Start", 220, 350, 200, 80, 30);
   }
   if (pauseState){
-    button("Pause", 0, 0, 50, 20, 12);
+    image(play, 0, 0);
     textSize(50);
     fill(0);
     stroke(210,255,255);
     text("GAME PAUSED", 150, 250);
   }
   else if (!menu && !pauseState){
-    button("Pause", 0, 0, 50, 20, 12);
+    image(pause, 0, 0);
     for (planet x: plist){
       if (x.mouseInRadius()){
         if (clicks == 0){
