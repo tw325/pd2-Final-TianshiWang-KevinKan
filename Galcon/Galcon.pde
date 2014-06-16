@@ -11,7 +11,7 @@ the home planet is easily set.
 PImage bg, cursor, logo, pause, play;
 boolean clicked = false;
 planet p0,p1,p2,p3,p4,p5,p6;
-planet choice1, choice2;
+planet home, target;
 planet[] plist = new planet[7];
 
 spaceship sp;
@@ -21,9 +21,9 @@ spaceship[] splist = new spaceship[3];
 
 boolean menu = true;
 boolean pauseState = false;
-int ssave;
 int clicks = 0;
 int savedTime1,savedTime2,savedTime3;
+boolean allOn;
 
 
 void setup(){
@@ -74,10 +74,11 @@ void allOff(){
   for (planet x: plist){
     x.ringOff();
     x.hoverRingOff();
-    choice1 = null;
-    choice2 = null;
+    home = null;
+    target = null;
   }
   clicks = 0;
+  allOn = false;
 }
 
 void allOn(){
@@ -86,6 +87,7 @@ void allOn(){
       x.ringOn();
   }
   clicks = 2;
+  allOn = true;
 }
 
 void mousePressed(){
@@ -102,29 +104,28 @@ void mousePressed(){
           if (clicks == 0){
             x.ringOn();
             clicks++;
-            choice1 = x;
+            home = x;
           }else if (clicks == 1 && x.Ring.on){
             allOn();
-            clicks++;
-            choice2 = x;
-            stroke(0, 180, 0);
-            line(choice1.xcor, choice1.ycor, choice2.xcor, choice2.ycor);
+            //stroke(0, 180, 0);
+            //line(home.xcor, home.ycor, target.xcor, target.ycor);
           }else if (clicks == 1 && !x.Ring.on){
-            x.ringOn();
+            target = x;
+            //send ships
             clicks++;
-            x.num = x.num - ssave;
-            choice2 = x;
-            stroke(0, 180, 0);
-            line(choice1.xcor, choice1.ycor, choice2.xcor, choice2.ycor);
+            allOff();
           }
         }else if (!(x.planetColor.equals("blue"))){
           if (clicks == 1){
-            x.ringOn();
+            target = x;
+            //send ships
             clicks++;
-            x.num = x.num - ssave;
-            choice2 = x;
-            stroke(0, 180, 0);
-            line(choice1.xcor, choice1.ycor, choice2.xcor, choice2.ycor);
+            allOff();
+          }else if (clicks ==2 && allOn){
+            println("hello");
+            target = x;
+            //send ships
+            allOff();
           }
         }
       }
@@ -173,31 +174,29 @@ void draw() {
         if (clicks == 0){
           if (x.planetColor.equals("blue"))
             x.hoverRingOn();
-            choice1 = x;
+            home = x;
         }
         if (clicks == 1){
-          if (x.planetColor.equals("blue")){
-            x.hoverRingOn();
-            choice2 = x;
-            stroke(175,250,250);
-            line(choice1.xcor, choice1.ycor, choice2.xcor, choice2.ycor);
+          x.hoverRingOn();
+          target = x;
+          stroke(175,250,250);
+          line(home.xcor, home.ycor, target.xcor, target.ycor);
+        }        
+        if (clicks == 2 && allOn){
+          target = x;
+          for (planet b: plist){
+            if (b.planetColor.equals("blue")){
+              stroke(175,250,250);
+              line(b.xcor, b.ycor, target.xcor, target.ycor);
+            }
           }
-          if (!(x.planetColor.equals("blue"))){
-            x.hoverRingOn();
-            choice2 = x;
-            stroke(175,250,250);
-            line(choice1.xcor, choice1.ycor, choice2.xcor, choice2.ycor);
-          }
+          x.hoverRingOn();
         }
       }if (!x.mouseInRadius()){
          x.hoverRingOff();
       }
     }
-     
-    if (clicks == 2){
-      stroke(0,180,0);
-      line(choice1.xcor, choice1.ycor, choice2.xcor, choice2.ycor);
-    }
+
     
     int passedTime1 = millis() - savedTime1;  
     int passedTime2 = millis() - savedTime2;

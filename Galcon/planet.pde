@@ -105,5 +105,9 @@ class planet{
     if (radius == 24)
       planetImage = loadImage("img/"+c+"3.png");
   }
+  
+  void sendSpaceships(){
+  }
+    
 }
 
