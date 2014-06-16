@@ -81,7 +81,16 @@ class spaceship{
       xcor+=dx;
       ycor+=dy;
       if (target.getDistance((int)xcor, (int)ycor)<20){ //CAUSES LOSS OF PLANET NUMBER
-        target.decrease(quantity);
+        if (shipcolor.equals(target.planetColor)){
+          target.increase(quantity);
+        }
+        else{
+          target.decrease(quantity);
+          if (target.num <0){
+            target.changeColor(shipcolor);
+            target.num *= -1;
+          }
+        }
         on = false;
       }
     }

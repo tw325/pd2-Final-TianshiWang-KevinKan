@@ -91,5 +91,19 @@ class planet{
   void decrease(int n){
     num = num - n;
   }
+  
+  void increase(int n){
+    num = num + n;
+  }
+  
+  void changeColor(String c){
+    planetColor = c;
+    if (radius == 36)
+      planetImage = loadImage("img/"+c+"1.png");
+    if (radius == 30)
+      planetImage = loadImage("img/"+c+"2.png");
+    if (radius == 24)
+      planetImage = loadImage("img/"+c+"3.png");
+  }
 }
 
