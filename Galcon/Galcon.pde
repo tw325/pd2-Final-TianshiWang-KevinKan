@@ -92,32 +92,34 @@ void mousePressed(){
   if (mouseX< 50 && mouseX > 0 && mouseY < 20 && mouseY> 0){
     pauseState = !pauseState;
   }
-  for (planet x: plist){
-    if (x.mouseInRadius()){
-      if (x.planetColor.equals("blue")){
-        if (clicks == 0){
-          x.ringOn();
-          clicks++;
-          ssave = x.num/2;
-        }else if (clicks == 1 && x.Ring.on){
-          allOn();
-          clicks++;
-        }else if (clicks == 1 && !x.Ring.on){
-          x.ringOn();
-          clicks++;
-          x.num = x.num - ssave;
-        }
-      }else if (!(x.planetColor.equals("blue"))){
-        if (clicks == 1){
-          x.ringOn();
-          clicks++;
-          x.num = x.num - ssave;
+  else{
+    for (planet x: plist){
+      if (x.mouseInRadius()){
+        if (x.planetColor.equals("blue")){
+          if (clicks == 0){
+            x.ringOn();
+            clicks++;
+            ssave = x.num/2;
+          }else if (clicks == 1 && x.Ring.on){
+            allOn();
+            clicks++;
+          }else if (clicks == 1 && !x.Ring.on){
+            x.ringOn();
+            clicks++;
+            x.num = x.num - ssave;
+          }
+        }else if (!(x.planetColor.equals("blue"))){
+          if (clicks == 1){
+            x.ringOn();
+            clicks++;
+            x.num = x.num - ssave;
+          }
         }
       }
     }
+    if (inRadiusAny() == false)
+      allOff();
   }
-  if (inRadiusAny() == false)
-    allOff();
 }
 
 
