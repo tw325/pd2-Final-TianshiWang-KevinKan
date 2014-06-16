@@ -37,8 +37,6 @@ class spaceship{
       angle += PI/2;
     else if (x2 < x1 && y2 < y1)
       angle += PI;
-    println(angle);
-    
     return angle;
   }
 

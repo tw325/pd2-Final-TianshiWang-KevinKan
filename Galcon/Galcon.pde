@@ -9,7 +9,7 @@ the home planet is easily set.
 i like what you did so far though!
 */
 
-PImage bg, cursor;
+PImage bg, cursor, logo;
 boolean clicked = false;
 planet p0,p1,p2,p3,p4,p5,p6;
 planet[] plist = new planet[7];
@@ -29,6 +29,7 @@ int savedTime1,savedTime2,savedTime3;
 void setup(){
   noCursor();
   size (640,480);
+  logo = loadImage("img/menu.jpg");
   bg = loadImage("img/background.jpg");
   cursor = loadImage("img/cursor.png");
   p0 = new planet(50, 50, 36, "blue");
@@ -87,32 +88,34 @@ void mousePressed(){
   if (menu && mouseX< 400 && mouseX > 220 && mouseY < 290 && mouseY > 190){
     menu = false;
   }
-  for (planet x: plist){
-    if (x.mouseInRadius()){
-      if (x.planetColor.equals("blue")){
-        if (clicks == 0){
-          x.ringOn();
-          clicks++;
-          ssave = x.num/2;
-        }else if (clicks == 1 && x.Ring.on){
-          allOn();
-          clicks++;
-        }else if (clicks == 1 && !x.Ring.on){
-          x.ringOn();
-          clicks++;
-          x.num = x.num - ssave;
-        }
-      }else if (!(x.planetColor.equals("blue"))){
-        if (clicks == 1){
-          x.ringOn();
-          clicks++;
-          x.num = x.num - ssave;
+  else{
+    for (planet x: plist){
+      if (x.mouseInRadius()){
+        if (x.planetColor.equals("blue")){
+          if (clicks == 0){
+            x.ringOn();
+            clicks++;
+            ssave = x.num/2;
+          }else if (clicks == 1 && x.Ring.on){
+            allOn();
+            clicks++;
+          }else if (clicks == 1 && !x.Ring.on){
+            x.ringOn();
+            clicks++;
+            x.num = x.num - ssave;
+          }
+        }else if (!(x.planetColor.equals("blue"))){
+          if (clicks == 1){
+            x.ringOn();
+            clicks++;
+            x.num = x.num - ssave;
+          }
         }
       }
     }
+    if (inRadiusAny() == false)
+      allOff();
   }
-  if (inRadiusAny() == false)
-    allOff();
 }
 
 
@@ -134,6 +137,7 @@ void draw() {
   background(bg);
   if (menu){
     noFill();
+    image(logo,120,90); 
     strokeWeight(4);
     rect(220, 190, 200, 100, 7);
     textSize(30);
