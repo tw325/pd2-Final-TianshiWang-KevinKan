@@ -20,6 +20,7 @@ spaceship sp2;
 spaceship[] splist = new spaceship[3];
 
 boolean menu = true;
+boolean pauseState = false;
 int ssave;
 int xsave1, ysave1, xsave2, ysave2;
 int clicks = 0;
@@ -29,9 +30,9 @@ int savedTime1,savedTime2,savedTime3;
 void setup(){
   noCursor();
   size (640,480);
-  logo = loadImage("img/menu.jpg");
   bg = loadImage("img/background.jpg");
   cursor = loadImage("img/cursor.png");
+  logo = loadImage("img/logo.png");
   p0 = new planet(50, 50, 36, "blue");
   p1 = new planet(500, 400, 30, "red");
   p2 = new planet(120, 90, 24, "gray");
@@ -85,37 +86,38 @@ void allOn(){
 }
 
 void mousePressed(){
-  if (menu && mouseX< 400 && mouseX > 220 && mouseY < 290 && mouseY > 190){
+  if (menu && mouseX< 420 && mouseX > 220 && mouseY < 430 && mouseY > 350){
     menu = false;
   }
-  else{
-    for (planet x: plist){
-      if (x.mouseInRadius()){
-        if (x.planetColor.equals("blue")){
-          if (clicks == 0){
-            x.ringOn();
-            clicks++;
-            ssave = x.num/2;
-          }else if (clicks == 1 && x.Ring.on){
-            allOn();
-            clicks++;
-          }else if (clicks == 1 && !x.Ring.on){
-            x.ringOn();
-            clicks++;
-            x.num = x.num - ssave;
-          }
-        }else if (!(x.planetColor.equals("blue"))){
-          if (clicks == 1){
-            x.ringOn();
-            clicks++;
-            x.num = x.num - ssave;
-          }
+  if (mouseX< 50 && mouseX > 0 && mouseY < 20 && mouseY> 0){
+    pauseState = !pauseState;
+  }
+  for (planet x: plist){
+    if (x.mouseInRadius()){
+      if (x.planetColor.equals("blue")){
+        if (clicks == 0){
+          x.ringOn();
+          clicks++;
+          ssave = x.num/2;
+        }else if (clicks == 1 && x.Ring.on){
+          allOn();
+          clicks++;
+        }else if (clicks == 1 && !x.Ring.on){
+          x.ringOn();
+          clicks++;
+          x.num = x.num - ssave;
+        }
+      }else if (!(x.planetColor.equals("blue"))){
+        if (clicks == 1){
+          x.ringOn();
+          clicks++;
+          x.num = x.num - ssave;
         }
       }
     }
-    if (inRadiusAny() == false)
-      allOff();
   }
+  if (inRadiusAny() == false)
+    allOff();
 }
 
 
@@ -131,24 +133,37 @@ void linesave(){
     }
   }
 }
-// check for mouseX mouseY and see if clicked == true
+void button(String text, int xcor, int ycor, int w, int h, int size){
+  fill(210,255,255, 80);
+  strokeWeight(4);
+  rect(xcor, ycor, w, h, 7);
+  textSize(size);
+  if (mouseX< xcor+w && mouseX > xcor && mouseY < ycor+h && mouseY > ycor){
+    fill(210,255,255);
+    stroke(210,255,255);
+  }
+  else{
+    fill(0);
+    stroke(0);
+  }
+  text(text, (w-text.length()*size * .5)/2 + xcor , ((h+size)/2 + ycor));
+}
 
 void draw() {
   background(bg);
   if (menu){
-    noFill();
-    image(logo,120,90); 
-    strokeWeight(4);
-    rect(220, 190, 200, 100, 7);
-    textSize(30);
-    fill(0);
-    text("Start", 290, 250);
-    /*
-    if (mouseX< 400 && mouseX > 220 && mouseY < 290 && mouseY > 190)
-      menu = false;
-    */
+    image(logo, 0, 0);
+    button("Start", 220, 350, 200, 80, 30);
   }
-  else if (!menu){
+  if (pauseState){
+    button("Pause", 0, 0, 50, 20, 12);
+    textSize(50);
+    fill(0);
+    stroke(210,255,255);
+    text("GAME PAUSED", 150, 250);
+  }
+  else if (!menu && !pauseState){
+    button("Pause", 0, 0, 50, 20, 12);
     for (planet x: plist){
       if (x.mouseInRadius()){
         if (clicks == 0){
