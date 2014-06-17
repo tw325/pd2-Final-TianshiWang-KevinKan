@@ -1,21 +1,30 @@
 PImage bg, cursor, logo, pause, play;
-boolean clicked = false;
+boolean clicked;
 planet p0,p1,p2,p3,p4,p5,p6;
 planet home, target;
-planet[] plist = new planet[7];
+planet[] plist;
 
 spaceship sp;
-ArrayList<spaceship> allShips = new ArrayList<spaceship>();
+ArrayList<spaceship> allShips;
 
-boolean menu = true;
-boolean pauseState = false;
-boolean win = false;
-int clicks = 0;
+boolean menu;
+boolean pauseState;
+boolean win;
+boolean lose;
+int clicks;
 int savedTime1,savedTime2,savedTime3;
 boolean allOn;
 
 
 void setup(){
+  clicked = false;
+  plist = new planet[7];
+  allShips = new ArrayList<spaceship>();
+  menu = true;
+  pauseState = false;
+  win = false;
+  lose = false;
+  clicks = 0;
   noCursor();
   size (640,480);
   bg = loadImage("img/background.jpg");
@@ -84,8 +93,11 @@ void mousePressed(){
   if (menu && mouseX< 420 && mouseX > 220 && mouseY < 430 && mouseY > 350){
     menu = false;
   }
-  if (mouseX< 30 && mouseX > 0 && mouseY < 30 && mouseY> 0){
+  if (!menu && !win && mouseX< 30 && mouseX > 0 && mouseY < 30 && mouseY> 0){
     pauseState = !pauseState;
+  }
+  if ((win || lose) && mouseX < 470 && mouseX> 170 && mouseY < 290 && mouseY > 190){
+    setup();
   }
   else{
     for (planet x: plist){
@@ -161,6 +173,14 @@ boolean checkWin(){
   }
   return true;
 }
+boolean checkLose(){
+  for (planet x: plist){
+    if (x.planetColor == "blue"){
+      return false;
+    }
+  }
+  return true;
+}
 
 void draw() {
   background(bg);
@@ -178,9 +198,17 @@ void draw() {
       pauseState = false;
   }
   if (win){
-    button("YOU WIN", 170, 190, 300, 100, 35);
+    textSize(40);
+    text(" YOU WIN " , 225, 125); 
+    button("Play Again?", 170, 190, 300, 100, 35);
+  }
+  if (lose){
+    textSize(40);
+    text(" YOU LOSE " , 225, 125); 
+    button("Play Again?", 170, 190, 300, 100, 35);
   }  
   else if (!menu && !pauseState && !win){
+    lose = checkLose();
     win = checkWin();
     image(pause, 0, 0);
     for (planet x: plist){
