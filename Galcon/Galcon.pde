@@ -16,7 +16,7 @@ boolean allOn;
 
 void setup(){
   clicked = false;
-  plist = new planet[(int)(Math.random()*7)+6];
+  plist = new planet[(int)(Math.random()*5)+6];
   allShips = new ArrayList<spaceship>();
   menu = true;
   pauseState = false;
@@ -34,11 +34,11 @@ void setup(){
   step1 = loadImage("img/step1.png");
   step2 = loadImage("img/step2.png");
   step3 = loadImage("img/step3.png");
-  for (int i=0; i<plist.length; i++){
-    plist[i]=new planet((int)(Math.random()*520)+40, (int)(Math.random()*360)+40, ((int)(3*Math.random())+4)*6, "gray");
+  for (int i=2; i<plist.length; i++){
+    plist[i]=new planet((int)(Math.random()*400)+80, (int)(Math.random()*240)+80, ((int)(3*Math.random())+4)*6, "gray");
   }
-  plist[0] = new planet((int)(Math.random()*40)+40, (int)(Math.random()*40)+40, 36, "blue");
-  plist[1] = new planet((int)(Math.random()*40)+520, (int)(Math.random()*40)+360, 36, "red");
+  plist[0] = new planet((int)(Math.random()*20)+20, (int)(Math.random()*20)+20, 36, "blue");
+  plist[1] = new planet((int)(Math.random()*20)+540, (int)(Math.random()*20)+380, 36, "red");
   
   for(int i =2; i<plist.length; i++){
     for(int j=i+1; j<plist.length; j++){
@@ -253,6 +253,19 @@ void draw() {
       }
     }
 
+    /*int lim = 1;
+    for (planet p: plist){
+      if (p.num <= lim){
+        for (planet r: plist){
+          if (r.getColor().equals("red") && Math.random()<0.2){
+            addShipsToList(r.sendSpaceships(p));
+            lim = 1;
+          }
+        }
+      }
+      lim++;
+    }*/
+    
     
     int passedTime1 = millis() - savedTime1;  
     int passedTime2 = millis() - savedTime2;
