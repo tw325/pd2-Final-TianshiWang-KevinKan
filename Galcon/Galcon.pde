@@ -1,4 +1,4 @@
-PImage bg, cursor, logo, pause, play;
+PImage bg, bg2, cursor, logo, pause, play, step1, step2, step3;
 boolean clicked;
 planet p0,p1,p2,p3,p4,p5,p6;
 planet home, target;
@@ -28,17 +28,21 @@ void setup(){
   noCursor();
   size (640,480);
   bg = loadImage("img/background.jpg");
+  bg2 = loadImage("img/background2.png");
   cursor = loadImage("img/cursor.png");
   logo = loadImage("img/logo.png");
   pause = loadImage("img/pause.png");
   play = loadImage("img/play.png");
+  step1 = loadImage("img/step1.png");
+  step2 = loadImage("img/step2.png");
+  step3 = loadImage("img/step3.png");
   p0 = new planet(50, 50, 36, "blue");
   p1 = new planet(500, 400, 30, "red");
   p2 = new planet(120, 90, 24, "gray");
   p3 = new planet(200, 220, 24, "gray");
   p4 = new planet(350, 100, 36, "gray");
   p5 = new planet(420, 80, 30, "gray");
-  p6 = new planet(300, 250, 24, "blue");
+  p6 = new planet(300, 275, 24, "gray");
 
   sp = new spaceship(p1.xcor, p1.ycor, p1, p5, 5); //CHANGES
 
@@ -90,7 +94,7 @@ void addShipsToList(ArrayList<spaceship> temp){
 }
 
 void mousePressed(){
-  if (menu && mouseX< 420 && mouseX > 220 && mouseY < 430 && mouseY > 350){
+  if (menu && mouseX< 420 && mouseX > 220 && mouseY < 450 && mouseY > 370){
     menu = false;
   }
   if (!menu && !win && mouseX< 30 && mouseX > 0 && mouseY < 30 && mouseY> 0){
@@ -183,12 +187,21 @@ boolean checkLose(){
 }
 
 void draw() {
-  background(bg);
   if (menu){
+    background(bg2);
     image(logo, 0, 0);
-    button("Start", 220, 350, 200, 80, 30);
+    textSize(12);
+    fill(210, 255, 255);
+    image(step1, 90, 260);
+    text ("1: Select Your Planet", 91, 272);
+    image(step2, 230, 260);
+    text ("2: Select Your Target", 231, 272);
+    image(step3, 401, 260);
+    text ("3: Conquer the Galaxy", 402, 272);
+    button("Start", 220, 370, 200, 80, 30);
   }
   if (pauseState){
+    background(bg);
     image(play, 0, 0);
     textSize(50);
     fill(0);
@@ -198,16 +211,21 @@ void draw() {
       pauseState = false;
   }
   if (win){
+    background(bg);
     textSize(40);
+    fill(210, 255, 255);
     text(" YOU WIN " , 225, 125); 
     button("Play Again?", 170, 190, 300, 100, 35);
   }
   if (lose){
+    background(bg);
     textSize(40);
+    fill(210, 255, 255);
     text(" YOU LOSE " , 225, 125); 
     button("Play Again?", 170, 190, 300, 100, 35);
   }  
   else if (!menu && !pauseState && !win){
+    background(bg);
     lose = checkLose();
     win = checkWin();
     image(pause, 0, 0);

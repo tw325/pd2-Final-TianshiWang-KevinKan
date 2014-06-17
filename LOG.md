@@ -96,8 +96,9 @@ LOG
 - Attempted spaceship movement/creation (failed)
 - Created a basic menu
 - Created Menu (May add instructions on menu screen).
-- Created Pause/Play feature
+- Created Pause/Play feature **complete**
 - Replaced linesave with home/target(choice1,choice2) variables.
+- Finishing touches to Rings **complete**
 
 *Tyler Wang* <br>
 - Built on Galcon menu screen
@@ -106,10 +107,15 @@ LOG
 
 **06.16.14** <br>
 *Tyler Wang* <br>
--
+- Spaceship movement from blue to blue
+- Spaceship movement from blue to grey
+- Spaceships are basically complete.
 
 *Kevin Kan* <br>
--
+- Added win/lose screen **complete**
+- Added option to play again after winning/losing
+- Added Details/Instructions on menu ** complete**
+- Spaceship cap images.
 
 
 
