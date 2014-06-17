@@ -65,57 +65,65 @@ LOG
 **06.11.14** <br>
 *Kevin/Tyler* - Pair Programming <br>
 - Worked on ring creation -> partially fixed.
-- Ring can toggle, but can not recognize only 2 rings
+- Ring can toggle, but can not recognize only 2 rings.
 
 *Kevin* <br>
-- Fixed Ring functionality. (inRadiusAny(), allOff())
-- Added line drawing! when linking 2 planets (linesave(), line())
+- Fixed Ring functionality. (inRadiusAny(), allOff()).
+- Added line drawing! when linking 2 planets (linesave(), line()).
 - Note: very important to organize what needs to show up on top and bottom with the draw() function.
 
 **06.13.14**<br>
 *Tyler Wang* <br>
-- Changed growth rates of planets based on size
-- Created spaceship class
-- Adjusted angle and speed of spaceships using trig formulas
-- Finished spaceship movement using rotate and translate methods
+- Changed growth rates of planets based on size.
+- Created spaceship class.
+- Adjusted angle and speed of spaceships using trig formulas.
+- Finished spaceship movement using rotate and translate methods.
 
 *Kevin Kan* <br>
-- Got rid of mouseOver() -> put into draw()
-- Put in new planets 
-- Created an allOn() method for rings
-- Made rings when hovering over planets 
-- Made lines to join HoverRings
-- Attempted decreasing number of ships
+- Got rid of mouseOver() -> put into draw().
+- Put in new planets.
+- Created an allOn() method for rings.
+- Made rings when hovering over planets.
+- Made lines to join HoverRings.
+- Attempted decreasing number of ships.
 
 **06.14.14** <br>
 *Tyler Wang* <br>
-- Implemented spaceship subtraction system
+- Implemented spaceship subtraction system.
 
 **06.15.14** <br>
 *Kevin Kan* <br>
-- Attempted spaceship movement/creation (failed)
-- Created a basic menu
+- Attempted spaceship movement/creation (failed).
+- Created a basic menu.
 - Created Menu (May add instructions on menu screen).
-- Created Pause/Play feature **complete**
+- Created Pause/Play feature. **complete**
 - Replaced linesave with home/target(choice1,choice2) variables.
-- Finishing touches to Rings **complete**
+- Finishing touches to Rings. **complete**
 
 *Tyler Wang* <br>
-- Built on Galcon menu screen
+- Built on Galcon menu screen.
 - Fixed menu "start" button bug.
-- started spaceships again
+- started spaceships again.
 
 **06.16.14** <br>
 *Tyler Wang* <br>
-- Spaceship movement from blue to blue
-- Spaceship movement from blue to grey
+- Spaceship movement from blue to blue.
+- Spaceship movement from blue to grey.
 - Spaceships are basically complete.
+- Edited spaceship movement.
+- Added random gray planet spawning.
+- Player code **COMPLETE**.
 
 *Kevin Kan* <br>
 - Added win/lose screen **complete**
-- Added option to play again after winning/losing
-- Added Details/Instructions on menu ** complete**
-- Spaceship cap images.
+- Added option to play again after winning/losing.
+- Added Details/Instructions on menu. ** complete**
+- Spaceship cap # of images.
 
-
+**06.17.14** <br>
+*Kevin Kan* <br>
+- Edited Planet Spawning
+- ^Now random and evenly spaced.
+- worked on AI (4 new methods - strongest, weakest, biggestRed and smallestRed).
+- AI complete and working well!
 
