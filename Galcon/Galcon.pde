@@ -239,17 +239,13 @@ void draw() {
         if (s.on){
           s.setV();
           s.move();
-          println("okay");
         }
         else
           if (allShips.size()>1){
             allShips.remove(i);
-            println("removed");
-            println(allShips.toString());
           }
           else{
             allShips.set(0, null);
-            println("end");
           }
       }
     }

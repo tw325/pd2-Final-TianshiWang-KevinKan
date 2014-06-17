@@ -107,7 +107,7 @@ class planet{
   }
   
   ArrayList<spaceship> sendSpaceships(planet t){
-    int amt = num/2+1;
+    int amt = num/2;
     if (amt<20){
       for (int i=0; i<amt; i++){
         sp = new spaceship(xcor, ycor, this, target, 1);
