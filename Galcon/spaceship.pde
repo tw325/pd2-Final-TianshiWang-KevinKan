@@ -88,6 +88,7 @@ class spaceship{
           target.decrease(quantity);
           if (target.num <0){
             target.changeColor(shipcolor);
+            target.grow = true;
             target.num *= -1;
           }
         }

@@ -106,24 +106,35 @@ void mousePressed(){
             home = x;
           }else if (clicks == 1 && x.Ring.on){
             allOn();
-            //stroke(0, 180, 0);
-            //line(home.xcor, home.ycor, target.xcor, target.ycor);
           }else if (clicks == 1 && !x.Ring.on){
             target = x;
             addShipsToList(home.sendSpaceships(target));
             clicks++;
             allOff();
+          }else if (clicks ==2 && allOn){
+            println("hello");
+            target = x;
+            for (planet b: plist){
+              if (x.planetColor.equals("blue")){
+              addShipsToList(b.sendSpaceships(target));
+              }
+            allOff();
+            }
           }
         }else if (!(x.planetColor.equals("blue"))){
           if (clicks == 1){
             target = x;
-            //send ships
+            addShipsToList(home.sendSpaceships(target));
             clicks++;
             allOff();
           }else if (clicks ==2 && allOn){
             println("hello");
             target = x;
-            //send ships
+            for (planet b: plist){
+              if (x.planetColor.equals("blue")){
+                addShipsToList(b.sendSpaceships(target));
+              }
+            }
             allOff();
           }
         }
