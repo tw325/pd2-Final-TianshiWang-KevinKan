@@ -1,7 +1,10 @@
+import java.io.*;
+import java.util.*;
+
 PImage bg, bg2, cursor, logo, pause, play, step1, step2, step3;
 boolean clicked;
 planet home, target;
-planet[] plist;
+ArrayList<planet> plist;
 
 ArrayList<spaceship> allShips;
 
@@ -16,7 +19,7 @@ boolean allOn;
 
 void setup(){
   clicked = false;
-  plist = new planet[(int)(Math.random()*5)+6];
+  plist = new ArrayList<planet>();
   allShips = new ArrayList<spaceship>();
   menu = true;
   pauseState = false;
@@ -34,30 +37,32 @@ void setup(){
   step1 = loadImage("img/step1.png");
   step2 = loadImage("img/step2.png");
   step3 = loadImage("img/step3.png");
-  for (int i=2; i<plist.length; i++){
-    plist[i]=new planet((int)(Math.random()*400)+80, (int)(Math.random()*240)+80, ((int)(3*Math.random())+4)*6, "gray");
-  }
-  plist[0] = new planet((int)(Math.random()*20)+20, (int)(Math.random()*20)+20, 36, "blue");
-  plist[1] = new planet((int)(Math.random()*20)+540, (int)(Math.random()*20)+380, 36, "red");
-  
-  for(int i =2; i<plist.length; i++){
-    for(int j=i+1; j<plist.length; j++){
-      while (plist[i].getDistance(plist[j].xcor, plist[j].ycor)<72){
-        plist[i] = new planet((int)(Math.random()*400)+80, (int)(Math.random()*240)+80, (((int)(3*Math.random())+4)*6), "gray");
-        println("loading");
+
+  plist.add(new planet((int)(Math.random()*20)+20, (int)(Math.random()*20)+20, 36, "blue"));
+  plist.add(new planet((int)(Math.random()*20)+540, (int)(Math.random()*20)+380, 36, "red"));
+  Random r = new Random();
+  for (int i = 1; i <= 10; i++){
+    int x = r.nextInt(500) + 40;
+    int y = r.nextInt(320) + 40;
+    for (int j = 0; j<= 72; j++){
+      for (int k = 0; k<=72; k++){ 
+        while (inRadiusAny(x+j,y+k) == true){
+          x = r.nextInt(500) + 40;
+          y = r.nextInt(320) + 40;
+        }
       }
     }
+    plist.add(new planet(x, y, (r.nextInt(3)) * 6 + 24, "gray"));
   }
-  
   
   savedTime1 = millis();
   savedTime2 = millis();
   savedTime3 = millis();
 }
 
-boolean inRadiusAny(){
+boolean inRadiusAny(int xcor, int ycor){
   for (planet x: plist){
-    if (x.getDistance(mouseX, mouseY) < x.radius)
+    if (x.getDistance(xcor, ycor) < x.radius)
       return true;
   }
   return false;
@@ -143,7 +148,7 @@ void mousePressed(){
         }
       }
     }
-    if (inRadiusAny() == false)
+    if (inRadiusAny(mouseX, mouseY) == false)
       allOff();
   }
 }
