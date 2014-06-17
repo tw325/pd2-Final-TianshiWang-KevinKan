@@ -71,7 +71,6 @@ LOG
 - Fixed Ring functionality. (inRadiusAny(), allOff())
 - Added line drawing! when linking 2 planets (linesave(), line())
 - Note: very important to organize what needs to show up on top and bottom with the draw() function.
-- 
 
 **06.13.14**<br>
 *Tyler Wang* <br>
@@ -79,6 +78,38 @@ LOG
 - Created spaceship class
 - Adjusted angle and speed of spaceships using trig formulas
 - Finished spaceship movement using rotate and translate methods
+
+*Kevin Kan* <br>
+- Got rid of mouseOver() -> put into draw()
+- Put in new planets 
+- Created an allOn() method for rings
+- Made rings when hovering over planets 
+- Made lines to join HoverRings
+- Attempted decreasing number of ships
+
+**06.14.14** <br>
+*Tyler Wang* <br>
+- Implemented spaceship subtraction system
+
+**06.15.14** <br>
+*Kevin Kan* <br>
+- Attempted spaceship movement/creation (failed)
+- Created a basic menu
+- Created Menu (May add instructions on menu screen).
+- Created Pause/Play feature
+- Replaced linesave with home/target(choice1,choice2) variables.
+
+*Tyler Wang* <br>
+- Built on Galcon menu screen
+- Fixed menu "start" button bug.
+- started spaceships again
+
+**06.16.14** <br>
+*Tyler Wang* <br>
+-
+
+*Kevin Kan* <br>
+-
 
 
 
