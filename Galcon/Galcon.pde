@@ -15,7 +15,7 @@ planet home, target;
 planet[] plist = new planet[7];
 
 spaceship sp;
-//spaceship[] splist = new spaceship[3];
+ArrayList<spaceship> allShips = new ArrayList<spaceship>();
 
 boolean menu = true;
 boolean pauseState = false;
@@ -83,6 +83,12 @@ void allOn(){
   allOn = true;
 }
 
+void addShipsToList(ArrayList<spaceship> temp){
+  for (spaceship s: temp){
+    allShips.add(s);
+  }
+}
+
 void mousePressed(){
   if (menu && mouseX< 420 && mouseX > 220 && mouseY < 430 && mouseY > 350){
     menu = false;
@@ -104,7 +110,7 @@ void mousePressed(){
             //line(home.xcor, home.ycor, target.xcor, target.ycor);
           }else if (clicks == 1 && !x.Ring.on){
             target = x;
-            home.sendSpaceships(target);
+            addShipsToList(home.sendSpaceships(target));
             clicks++;
             allOff();
           }
@@ -227,10 +233,22 @@ void draw() {
       text(""+x.num, x.xcor-10, x.ycor+5);
     }
       
-    /*for (spaceship s: splist){
-      s.setV();
-      s.move();
-    }*/
+    for (int i=0; i<allShips.size(); i++){
+      if ( allShips.get(i) != null){
+        spaceship s = allShips.get(i);
+        if (s.on){
+          s.setV();
+          s.move();
+        }
+        else
+          if (allShips.size()>1){
+            allShips.remove(i);
+          }
+          else{
+            allShips.set(0, null);
+          }
+      }
+    }
   
     if (keyPressed) {
       if (key == 'm') 

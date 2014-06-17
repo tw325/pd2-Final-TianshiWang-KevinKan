@@ -106,23 +106,21 @@ class planet{
       planetImage = loadImage("img/"+c+"3.png");
   }
   
-  void sendSpaceships(planet t){
-    int amt = num/2+1;
+  ArrayList<spaceship> sendSpaceships(planet t){
+    int amt = num/2;
     if (amt<20){
-      while (amt>0){
+      for (int i=0; i<amt; i++){
         sp = new spaceship(xcor, ycor, this, target, 1);
         splist.add(sp);
-        amt--;
       }
     }
     else if (amt<40){
     }
     else if (amt<60){
-    }
-    for (spaceship s : splist){
-      s.draw();
+      println("hello");
     }
     num -= amt;
+    return splist;
   }
     
 }
