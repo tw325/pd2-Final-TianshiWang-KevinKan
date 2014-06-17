@@ -78,8 +78,8 @@ class spaceship{
       image(getSpaceshipImage(), 0, 0); //displays spaceship
       text(""+getQuantity(), 0, 0);
       resetMatrix();
-      xcor+=dx;
-      ycor+=dy;
+      xcor+=dx*2*Math.random();
+      ycor+=dy*2*Math.random();
       if (target.getDistance((int)xcor, (int)ycor)<target.radius){ //CAUSES LOSS OF PLANET NUMBER
         if (shipcolor.equals(target.planetColor)){
           target.increase(quantity);
@@ -94,10 +94,5 @@ class spaceship{
         on = false;
       }
     }
-  }
-  
-  void draw(){
-    setV();
-    move();
   }
 }
