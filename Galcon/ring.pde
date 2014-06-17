@@ -19,7 +19,6 @@ class ring{
   void setOff(){
     on = false;
   }
-
   
   void display() {
     if (on == true) {
@@ -34,8 +33,6 @@ class ring{
       ellipse(x, y, radius*2, radius*2); 
     }
   }
-  
-  
 }
 
 

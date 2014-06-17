@@ -9,6 +9,7 @@ class planet{
   ring Ring;
   ring HoverRing;
   ArrayList<spaceship> splist = new ArrayList<spaceship>();
+  spaceship sp;
   
   planet(int x, int y, int r, String c){
     num = (int)(Math.random() * 30) + 2*r - 45;
@@ -82,6 +83,13 @@ class planet{
     return (getDistance(mouseX, mouseY) < radius);
   } 
   
+  int compareTo(planet p){
+    if (this.xcor == p.xcor && this.ycor == p.ycor)
+      return 0;
+    else
+      return 1;
+  }
+  
   void grow(){
     if (grow){
       num++;
@@ -117,7 +125,7 @@ class planet{
       }
     }
     if (num/2>= 500){
-      amt = 500;
+      amt = 500; // limit size
       for (int i=0; i<500; i++){
         sp = new spaceship(xcor, ycor, this, target, 1);
         splist.add(sp);

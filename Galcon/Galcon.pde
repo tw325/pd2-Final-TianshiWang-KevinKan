@@ -1,10 +1,8 @@
 PImage bg, bg2, cursor, logo, pause, play, step1, step2, step3;
 boolean clicked;
-planet p0,p1,p2,p3,p4,p5,p6;
 planet home, target;
 planet[] plist;
 
-spaceship sp;
 ArrayList<spaceship> allShips;
 
 boolean menu;
@@ -18,7 +16,7 @@ boolean allOn;
 
 void setup(){
   clicked = false;
-  plist = new planet[7];
+  plist = new planet[(int)(Math.random()*7)+6];
   allShips = new ArrayList<spaceship>();
   menu = true;
   pauseState = false;
@@ -36,23 +34,21 @@ void setup(){
   step1 = loadImage("img/step1.png");
   step2 = loadImage("img/step2.png");
   step3 = loadImage("img/step3.png");
-  p0 = new planet(50, 50, 36, "blue");
-  p1 = new planet(500, 400, 30, "red");
-  p2 = new planet(120, 90, 24, "gray");
-  p3 = new planet(200, 220, 24, "gray");
-  p4 = new planet(350, 100, 36, "gray");
-  p5 = new planet(420, 80, 30, "gray");
-  p6 = new planet(300, 275, 24, "gray");
-
-  sp = new spaceship(p1.xcor, p1.ycor, p1, p5, 5); //CHANGES
-
-  plist[0] = p0;
-  plist[1] = p1;
-  plist[2] = p2;
-  plist[3] = p3;
-  plist[4] = p4;
-  plist[5] = p5;
-  plist[6] = p6;
+  for (int i=0; i<plist.length; i++){
+    plist[i]=new planet((int)(Math.random()*520)+40, (int)(Math.random()*360)+40, ((int)(3*Math.random())+4)*6, "gray");
+  }
+  plist[0] = new planet((int)(Math.random()*40)+40, (int)(Math.random()*40)+40, 36, "blue");
+  plist[1] = new planet((int)(Math.random()*40)+520, (int)(Math.random()*40)+360, 36, "red");
+  
+  for(int i =2; i<plist.length; i++){
+    for(int j=i+1; j<plist.length; j++){
+      while (plist[i].getDistance(plist[j].xcor, plist[j].ycor)<72){
+        plist[i] = new planet((int)(Math.random()*400)+80, (int)(Math.random()*240)+80, (((int)(3*Math.random())+4)*6), "gray");
+        println("loading");
+      }
+    }
+  }
+  
   
   savedTime1 = millis();
   savedTime2 = millis();
@@ -118,15 +114,16 @@ void mousePressed(){
             addShipsToList(home.sendSpaceships(target));
             clicks++;
             allOff();
-          }else if (clicks ==2 && allOn){
-            println("hello");
+          }else if (clicks == 2 && allOn){
             target = x;
             for (planet b: plist){
-              if (x.planetColor.equals("blue")){
-              addShipsToList(b.sendSpaceships(target));
+              if (b.compareTo(target) != 0){
+                if (b.getColor().equals("blue")){
+                  addShipsToList(b.sendSpaceships(target));
+                }
               }
-            allOff();
             }
+            allOff();
           }
         }else if (!(x.planetColor.equals("blue"))){
           if (clicks == 1){
@@ -135,10 +132,9 @@ void mousePressed(){
             clicks++;
             allOff();
           }else if (clicks ==2 && allOn){
-            println("hello");
             target = x;
             for (planet b: plist){
-              if (x.planetColor.equals("blue")){
+              if (b.getColor().equals("blue")){
                 addShipsToList(b.sendSpaceships(target));
               }
             }

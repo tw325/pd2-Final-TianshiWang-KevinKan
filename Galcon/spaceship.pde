@@ -31,10 +31,11 @@ class spaceship{
     float x2 = target.getX();
     float y2 = target.getY();
     float angle = atan((y2-y1)/(x2-x1));
-    if (x2>=x1 && y2 < y1)
-      angle += 3*PI/2;
+    if (x2>=x1 && y2 < y1){
+      //angle;
+    }
     else if (x2 < x1 && y2>=y1)
-      angle += PI/2;
+      angle += PI;
     else if (x2 < x1 && y2 < y1)
       angle += PI;
     return angle;
@@ -43,21 +44,6 @@ class spaceship{
   String getColor(){
     return shipcolor;
   }
-
-  void setV(){
-    float x1 = xcor;
-    float y1 = ycor;
-    float x2 = target.getX();
-    float y2 = target.getY();
-    dx = (dHyp * cos(getAngle()));
-    dy = (dHyp * sin(getAngle()));
-  }
-
-//~5 ships = 1 image
-//max 20 images
-//so sending over 100 ships will still create 20 images
-//# ships sent less than 100 will be divided by 5 and rounded up (+1). 
-
   
   int getQuantity(){
     return quantity;
@@ -69,6 +55,15 @@ class spaceship{
   
   void setOn(){
     on = true;
+  }
+
+  void setV(){
+    float x1 = xcor;
+    float y1 = ycor;
+    float x2 = target.getX();
+    float y2 = target.getY();
+    dx = (dHyp * cos(getAngle()));
+    dy = (dHyp * sin(getAngle()));
   }
 
   void move(){
