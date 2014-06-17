@@ -76,7 +76,7 @@ class spaceship{
       translate(xcor, ycor);
       rotate(getAngle()+PI/2);
       image(getSpaceshipImage(), 0, 0); //displays spaceship
-      text(""+getQuantity(), 0, 0);
+      //text(""+getQuantity(), 0, 0);
       resetMatrix();
       xcor+=dx*2*Math.random();
       ycor+=dy*2*Math.random();

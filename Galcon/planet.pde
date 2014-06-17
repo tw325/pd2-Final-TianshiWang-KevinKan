@@ -107,9 +107,18 @@ class planet{
   }
   
   ArrayList<spaceship> sendSpaceships(planet t){
-    int amt = num/2;
-    if (amt<500){
+    int amt;
+    amt = num/2;
+    if (num/2<500){
+      amt = num/2;
       for (int i=0; i<amt; i+=1){
+        sp = new spaceship(xcor, ycor, this, target, 1);
+        splist.add(sp);
+      }
+    }
+    if (num/2>= 500){
+      amt = 500;
+      for (int i=0; i<500; i++){
         sp = new spaceship(xcor, ycor, this, target, 1);
         splist.add(sp);
       }
