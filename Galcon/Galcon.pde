@@ -8,12 +8,13 @@ ArrayList<planet> plist;
 
 ArrayList<spaceship> allShips;
 
+Random r = new Random();
 boolean menu;
 boolean pauseState;
 boolean win;
 boolean lose;
 int clicks;
-int savedTime1,savedTime2,savedTime3;
+int savedTime1,savedTime2,savedTime3, savedTime4;
 boolean allOn;
 
 
@@ -40,8 +41,8 @@ void setup(){
 
   plist.add(new planet((int)(Math.random()*20)+20, (int)(Math.random()*20)+20, 36, "blue"));
   plist.add(new planet((int)(Math.random()*20)+540, (int)(Math.random()*20)+380, 36, "red"));
-  Random r = new Random();
-  for (int i = 1; i <= 10; i++){
+
+  for (int i = 1; i <= r.nextInt(4) + 8; i++){
     int x = r.nextInt(500) + 40;
     int y = r.nextInt(320) + 40;
     for (int j = 0; j<= 72; j++){
@@ -58,6 +59,7 @@ void setup(){
   savedTime1 = millis();
   savedTime2 = millis();
   savedTime3 = millis();
+  savedTime4 = millis();
 }
 
 boolean inRadiusAny(int xcor, int ycor){
@@ -187,6 +189,49 @@ boolean checkLose(){
   return true;
 }
 
+planet biggestRed(){
+  planet p = plist.get(1);
+  for (planet x: plist){
+    if (x.planetColor == "red"){
+      if (x.num > p.num)
+        p = x;
+    }
+  }
+  return p;
+}
+planet smallestRed(){
+  planet p = plist.get(1);
+  for (planet x: plist){
+    if (x.planetColor == "red"){
+      if (x.num < p.num)
+        p = x;
+    }
+  }
+  return p;
+}
+
+planet weakest(){
+  planet p = plist.get(0);
+  for (planet x: plist){
+    if (x.planetColor == "blue" || x.planetColor == "gray"){
+      if (x.num < p.num)
+        p = x;
+    }
+  }
+  return p;
+}
+
+planet strongest(){
+  planet p = plist.get(0);
+  for (planet x: plist){
+    if (x.planetColor == "blue" || x.planetColor == "gray"){
+      if (x.num > p.num)
+        p = x;
+    }
+  }
+  return p;
+}
+
 void draw() {
   if (menu){
     background(bg2);
@@ -257,20 +302,21 @@ void draw() {
          x.hoverRingOff();
       }
     }
-
-    /*int lim = 1;
-    for (planet p: plist){
-      if (p.num <= lim){
-        for (planet r: plist){
-          if (r.getColor().equals("red") && Math.random()<0.2){
-            addShipsToList(r.sendSpaceships(p));
-            lim = 1;
-          }
-        }
-      }
-      lim++;
-    }*/
-    
+   // AI HERE
+    planet t0 = biggestRed();
+    planet t1 = weakest();
+    planet t2 = strongest();
+    planet t3 = smallestRed();
+    if ((millis() - savedTime4) > (r.nextInt(500) + 4000)){
+      double n = Math.random();
+      if (n > .6)
+        addShipsToList(t0.sendSpaceships(t1));
+      else if (n <= .6 && n > .2)
+        addShipsToList(t0.sendSpaceships(t2));
+      else if (n <= .2)
+        addShipsToList(t0.sendSpaceships(t3));
+      savedTime4 = millis();
+    }
     
     int passedTime1 = millis() - savedTime1;  
     int passedTime2 = millis() - savedTime2;

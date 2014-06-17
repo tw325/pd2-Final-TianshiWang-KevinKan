@@ -120,14 +120,14 @@ class planet{
     if (num/2<500){
       amt = num/2;
       for (int i=0; i<amt; i+=1){
-        sp = new spaceship(xcor, ycor, this, target, 1);
+        sp = new spaceship(xcor, ycor, this, t, 1);
         splist.add(sp);
       }
     }
     if (num/2>= 500){
       amt = 500; // limit size
       for (int i=0; i<500; i++){
-        sp = new spaceship(xcor, ycor, this, target, 1);
+        sp = new spaceship(xcor, ycor, this, t, 1);
         splist.add(sp);
       }
     }
