@@ -1,13 +1,3 @@
-/*
-My hypothesis?
-We should put the spaceship array in the planet class
-and then create the spaceships in the galcon class?
-i think we should do this so that each spaceship is connected
-to the planets like the rings are. 
-the home planet is easily set. 
-
-*/
-
 PImage bg, cursor, logo, pause, play;
 boolean clicked = false;
 planet p0,p1,p2,p3,p4,p5,p6;
@@ -19,6 +9,7 @@ ArrayList<spaceship> allShips = new ArrayList<spaceship>();
 
 boolean menu = true;
 boolean pauseState = false;
+boolean win = false;
 int clicks = 0;
 int savedTime1,savedTime2,savedTime3;
 boolean allOn;
@@ -162,6 +153,15 @@ void button(String text, int xcor, int ycor, int w, int h, int size){
   text(text, (w-text.length()*size * .5)/2 + xcor , ((h+size)/2 + ycor));
 }
 
+boolean checkWin(){
+  for (planet x: plist){
+    if (x.planetColor == "red"){
+      return false;
+    }
+  }
+  return true;
+}
+
 void draw() {
   background(bg);
   if (menu){
@@ -177,7 +177,11 @@ void draw() {
     if (keyPressed && key == ' ')
       pauseState = false;
   }
-  else if (!menu && !pauseState){
+  if (win){
+    button("YOU WIN", 170, 190, 300, 100, 35);
+  }  
+  else if (!menu && !pauseState && !win){
+    win = checkWin();
     image(pause, 0, 0);
     for (planet x: plist){
       if (x.mouseInRadius()){
@@ -260,14 +264,16 @@ void draw() {
           }
       }
     }
-  
+
     if (keyPressed) {
       if (key == 'm') 
         menu = true;
       if (key == ' ') 
         pauseState = true;
     }
+
   }
+
   image(cursor, mouseX-16, mouseY-16);
 }
 
