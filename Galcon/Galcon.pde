@@ -64,7 +64,7 @@ void setup(){
 
 boolean inRadiusAny(int xcor, int ycor){
   for (planet x: plist){
-    if (x.getDistance(xcor, ycor) < x.radius)
+    if (x.getDistance(xcor, ycor) < 72)
       return true;
   }
   return false;
