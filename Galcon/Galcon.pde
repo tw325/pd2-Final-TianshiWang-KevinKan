@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-PImage bg, bg2, cursor, logo, pause, play, step1, step2, step3;
+PImage bg, bg2, cursor, logo, pause, play, step1, step2, step3, step4;
 boolean clicked;
 planet home, target;
 ArrayList<planet> plist;
@@ -9,7 +9,8 @@ ArrayList<planet> plist;
 ArrayList<spaceship> allShips;
 
 Random r = new Random();
-boolean menu;
+boolean instructions;
+boolean start;
 boolean pauseState;
 boolean win;
 boolean lose;
@@ -22,7 +23,8 @@ void setup(){
   clicked = false;
   plist = new ArrayList<planet>();
   allShips = new ArrayList<spaceship>();
-  menu = true;
+  start = true;
+  instructions = false;
   pauseState = false;
   win = false;
   lose = false;
@@ -38,6 +40,7 @@ void setup(){
   step1 = loadImage("img/step1.png");
   step2 = loadImage("img/step2.png");
   step3 = loadImage("img/step3.png");
+  step4 = loadImage("img/step4.png");
 
   plist.add(new planet((int)(Math.random()*20)+20, (int)(Math.random()*20)+20, 36, "blue"));
   plist.add(new planet((int)(Math.random()*20)+540, (int)(Math.random()*20)+380, 36, "red"));
@@ -45,13 +48,9 @@ void setup(){
   for (int i = 1; i <= r.nextInt(4) + 8; i++){
     int x = r.nextInt(500) + 40;
     int y = r.nextInt(320) + 40;
-    for (int j = 0; j<= 72; j++){
-      for (int k = 0; k<=72; k++){ 
-        while (inRadiusAny(x+j,y+k) == true){
-          x = r.nextInt(500) + 40;
-          y = r.nextInt(320) + 40;
-        }
-      }
+    while (inRadiusAny(x+36,y+36) == true){
+      x = r.nextInt(500) + 40;
+      y = r.nextInt(320) + 40;
     }
     plist.add(new planet(x, y, (r.nextInt(3)) * 6 + 24, "gray"));
   }
@@ -64,7 +63,7 @@ void setup(){
 
 boolean inRadiusAny(int xcor, int ycor){
   for (planet x: plist){
-    if (x.getDistance(xcor, ycor) < 72)
+    if (x.getDistance(xcor, ycor) < 80)
       return true;
   }
   return false;
@@ -97,12 +96,21 @@ void addShipsToList(ArrayList<spaceship> temp){
 }
 
 void mousePressed(){
-  if (menu && mouseX< 420 && mouseX > 220 && mouseY < 450 && mouseY > 370){
-    menu = false;
+  if (instructions){
+    instructions = false;
+    start = false;
   }
-  if (!menu && !win && mouseX< 30 && mouseX > 0 && mouseY < 30 && mouseY> 0){
+  if (start && mouseX< 420 && mouseX > 220 && mouseY < 450 && mouseY > 370){
+    start = false;
+    instructions = true;
+  }
+  if (pauseState){
     pauseState = !pauseState;
   }
+  if (!start && !win && mouseX< 30 && mouseX > 0 && mouseY < 30 && mouseY> 0){
+    pauseState = !pauseState;
+  }
+    
   if ((win || lose) && mouseX < 470 && mouseX> 170 && mouseY < 290 && mouseY > 190){
     setup();
   }
@@ -233,27 +241,58 @@ planet strongest(){
 }
 
 void draw() {
-  if (menu){
+  if (start){
     background(bg2);
     image(logo, 0, 0);
     textSize(12);
     fill(210, 255, 255);
-    image(step1, 90, 260);
-    text ("1: Select Your Planet", 91, 272);
-    image(step2, 230, 260);
-    text ("2: Select Your Target", 231, 272);
-    image(step3, 401, 260);
-    text ("3: Conquer the Galaxy", 402, 272);
     button("Start", 220, 370, 200, 80, 30);
   }
-  if (pauseState){
-    background(bg);
-    image(play, 0, 0);
+  if(instructions){
+    background(bg2);
+    image(logo, 0, 0);
+    textSize(12);
+    fill(210, 255, 255);
+    text ("1: YOU ARE BLUE", 50, 300);
+    image(step1, 50, 350);
+    text ("2: Select Your Planet", 51, 345);
+    image(step2, 180, 350);
+    text ("3: Select Your Target", 181, 345);
+    image(step3, 351, 350);
+    text ("4: Double Click", 345, 333);
+    text ("to Select All Planets", 345, 345); //two lines
+    image(step4, 468, 350);
+    text ("5: Click to Send Ships", 469, 345);
+    text ("6: CONQUER RED!", 469, 300);
     textSize(50);
-    fill(0);
     stroke(210,255,255);
-    text("GAME PAUSED", 150, 250);
+    textSize(20);
+    text("(CLICK TO START)", 220, 300);
     if (keyPressed && key == ' ')
+      instructions = false;
+  }
+  if (pauseState){
+    background(bg2);
+    image(logo, 0, 0);
+    textSize(12);
+    fill(210, 255, 255);
+    text ("1: YOU ARE BLUE", 50, 300);
+    image(step1, 50, 350);
+    text ("2: Select Your Planet", 51, 345);
+    image(step2, 180, 350);
+    text ("3: Select Your Target", 181, 345);
+    image(step3, 351, 350);
+    text ("4: Double Click", 345, 333);
+    text ("to Select All Planets", 345, 345); //two lines
+    image(step4, 468, 350);
+    text ("5: Click to Send Ships", 469, 345);
+    text ("6: CONQUER RED!", 469, 300);
+    textSize(50);
+    stroke(210,255,255);
+    text("GAME PAUSED", 150, 240);
+    textSize(20);
+    text("(CLICK TO RESUME)", 220, 300);
+    if (keyPressed && key == 'm')
       pauseState = false;
   }
   if (win){
@@ -270,7 +309,7 @@ void draw() {
     text(" YOU LOSE " , 225, 125); 
     button("Play Again?", 170, 190, 300, 100, 35);
   }  
-  else if (!menu && !pauseState && !win){
+  else if (!start && !pauseState && !instructions && !win){
     background(bg);
     lose = checkLose();
     win = checkWin();
@@ -307,9 +346,9 @@ void draw() {
     planet t1 = weakest();
     planet t2 = strongest();
     planet t3 = smallestRed();
-    if ((millis() - savedTime4) > (r.nextInt(500) + 4000)){
+    if ((millis() - savedTime4) > (r.nextInt(1000) + 2000)){
       double n = Math.random();
-      if (n > .6)
+      if (n > .5)
         addShipsToList(t0.sendSpaceships(t1));
       else if (n <= .6 && n > .2)
         addShipsToList(t0.sendSpaceships(t2));
@@ -373,7 +412,7 @@ void draw() {
 
     if (keyPressed) {
       if (key == 'm') 
-        menu = true;
+        instructions = true;
       if (key == ' ') 
         pauseState = true;
     }
