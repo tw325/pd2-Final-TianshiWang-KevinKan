@@ -346,9 +346,9 @@ void draw() {
     planet t1 = weakest();
     planet t2 = strongest();
     planet t3 = smallestRed();
-    if ((millis() - savedTime4) > (r.nextInt(500) + 2000)){
+    if ((millis() - savedTime4) > (r.nextInt(500) + 2500)){
       double n = Math.random();
-      if (n > .5)
+      if (n > .6)
         addShipsToList(t0.sendSpaceships(t1));
       else if (n <= .6 && n > .2)
         addShipsToList(t0.sendSpaceships(t2));
