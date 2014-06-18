@@ -127,3 +127,7 @@ LOG
 - worked on AI (4 new methods - strongest, weakest, biggestRed and smallestRed).
 - AI complete and working well!
 
+*Tyler Wang* <br>
+- Implemented LinkedList version of Galcon, but was not successful.
+- Designed a menu after start screen to explain instructions and to serve as a pause screen.
+- Fixed minor problems in AI ship spawning.
