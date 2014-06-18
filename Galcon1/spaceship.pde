@@ -83,6 +83,7 @@ class spaceship{
           target.decrease(quantity);
           if (target.num <0){
             target.changeColor(shipcolor);
+            //target = new planet(target.xcor, target.ycor, target.radius, shipcolor);
             target.grow = true;
             target.num *= -1;
           }

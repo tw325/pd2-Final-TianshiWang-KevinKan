@@ -17,7 +17,7 @@ boolean lose;
 int clicks;
 int savedTime1,savedTime2,savedTime3, savedTime4;
 boolean allOn;
-
+planet t0, t1, t2, t3;
 
 void setup(){
   clicked = false;
@@ -197,7 +197,12 @@ boolean checkLose(){
   }
   return true;
 }
-
+void checkPlanets(){
+  t0 = biggestRed();
+  t1 = weakest();
+  t2 = strongest();
+  t3 = smallestRed(); 
+}
 planet biggestRed(){
   planet p = plist.get(1);
   for (planet x: plist){
@@ -345,12 +350,13 @@ void draw() {
    // AI HERE
     if ((millis() - savedTime4) > (r.nextInt(500) + 2500)){
       double n = Math.random();
+      checkPlanets();
       if (n > .6)
-        addShipsToList(biggestRed().sendSpaceships(weakest()));
+        addShipsToList(t0.sendSpaceships(t1));
       else if (n <= .6 && n > .2)
-        addShipsToList(biggestRed().sendSpaceships(strongest()));
+        addShipsToList(t0.sendSpaceships(t2));
       else if (n <= .2)
-        addShipsToList(biggestRed().sendSpaceships(smallestRed()));
+        addShipsToList(t0.sendSpaceships(t3));
       savedTime4 = millis();
     }
     
