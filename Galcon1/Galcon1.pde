@@ -6,7 +6,7 @@ boolean clicked;
 planet home, target;
 ArrayList<planet> plist;
 
-ArrayList<spaceship> allShips;
+MyLinkedList<spaceship> allShips;
 
 Random r = new Random();
 boolean instructions;
@@ -22,7 +22,7 @@ boolean allOn;
 void setup(){
   clicked = false;
   plist = new ArrayList<planet>();
-  allShips = new ArrayList<spaceship>();
+  allShips = new MyLinkedList();
   start = true;
   instructions = false;
   pauseState = false;
@@ -393,7 +393,7 @@ void draw() {
       text(""+x.num, x.xcor-10, x.ycor+5);
     }
       
-    for (int i=0; i<allShips.size(); i++){
+    for (int i=0; i<allShips.length(); i++){
       if ( allShips.get(i) != null){
         spaceship s = allShips.get(i);
         if (s.on){
@@ -401,7 +401,7 @@ void draw() {
           s.move();
         }
         else
-          if (allShips.size()>1){
+          if (allShips.length()>1){
             allShips.remove(i);
           }
           else{
