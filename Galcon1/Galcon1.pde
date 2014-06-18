@@ -343,18 +343,14 @@ void draw() {
       }
     }
    // AI HERE
-    planet t0 = biggestRed();
-    planet t1 = weakest();
-    planet t2 = strongest();
-    planet t3 = smallestRed();
     if ((millis() - savedTime4) > (r.nextInt(500) + 2500)){
       double n = Math.random();
       if (n > .6)
-        addShipsToList(t0.sendSpaceships(t1));
+        addShipsToList(biggestRed().sendSpaceships(weakest()));
       else if (n <= .6 && n > .2)
-        addShipsToList(t0.sendSpaceships(t2));
+        addShipsToList(biggestRed().sendSpaceships(strongest()));
       else if (n <= .2)
-        addShipsToList(t0.sendSpaceships(t3));
+        addShipsToList(biggestRed().sendSpaceships(smallestRed()));
       savedTime4 = millis();
     }
     
