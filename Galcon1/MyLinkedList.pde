@@ -48,17 +48,9 @@ import java.util.*;
     }
 
      E set(int i,E s){
-      Node<E> temp = new Node<E>(s);
-      Node<E> index = head;
-    
-      while (i>0){
-          index = index.getNext();
-          i--;
-      }
-      temp.setNext(index.getNext().getNext());
-            E ans = index.getNext().getData();
-      index.setNext(temp);
-      return ans;
+      head = new Node<E>(null);
+      tail = head;
+      return E;
     }
 
      E remove(int i){
