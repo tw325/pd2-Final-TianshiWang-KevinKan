@@ -200,6 +200,10 @@ boolean checkLose(){
 planet biggestRed(){
   planet p = plist.get(1);
   for (planet x: plist){
+    if (x.planetColor == "red")
+      p = x;
+  }
+  for (planet x: plist){
     if (x.planetColor == "red"){
       if (x.num > p.num)
         p = x;
@@ -210,6 +214,10 @@ planet biggestRed(){
 planet smallestRed(){
   planet p = plist.get(1);
   for (planet x: plist){
+    if (x.planetColor == "red")
+      p = x;
+  }
+  for (planet x: plist){
     if (x.planetColor == "red"){
       if (x.num < p.num)
         p = x;
@@ -219,7 +227,11 @@ planet smallestRed(){
 }
 
 planet weakest(){
-  planet p = plist.get(0);
+  planet p = plist.get(1);
+  for (planet x: plist){
+    if (x.planetColor == "blue" || x.planetColor == "gray")
+      p = x;
+  }
   for (planet x: plist){
     if (x.planetColor == "blue" || x.planetColor == "gray"){
       if (x.num < p.num)
@@ -230,7 +242,11 @@ planet weakest(){
 }
 
 planet strongest(){
-  planet p = plist.get(0);
+  planet p = plist.get(1);
+  for (planet x: plist){
+    if (x.planetColor == "blue" || x.planetColor == "gray")
+      p = x;
+  }
   for (planet x: plist){
     if (x.planetColor == "blue" || x.planetColor == "gray"){
       if (x.num > p.num)
@@ -342,17 +358,17 @@ void draw() {
       }
     }
    // AI HERE
-    planet t0 = biggestRed();
-    planet t1 = weakest();
-    planet t2 = strongest();
-    planet t3 = smallestRed();
     if ((millis() - savedTime4) > (r.nextInt(500) + 2000)){
+      planet t0 = biggestRed();
+      planet t1 = weakest();
+      planet t2 = strongest();
+      planet t3 = smallestRed();
       double n = Math.random();
       if (n > .5)
         addShipsToList(t0.sendSpaceships(t1));
       else if (n <= .6 && n > .2)
         addShipsToList(t0.sendSpaceships(t2));
-      else if (n <= .2)
+      else if (n <= .2 && t0 != t3)
         addShipsToList(t0.sendSpaceships(t3));
       savedTime4 = millis();
     }
