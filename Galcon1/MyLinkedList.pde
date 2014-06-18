@@ -50,7 +50,7 @@ import java.util.*;
      E set(int i,E s){
       head = new Node<E>(null);
       tail = head;
-      return E;
+      return s;
     }
 
      E remove(int i){
