@@ -134,6 +134,7 @@ void mousePressed(){
             for (planet b: plist){
               if (b.compareTo(target) != 0){
                 if (b.getColor().equals("blue")){
+                  target = b;
                   addShipsToList(b.sendSpaceships(target));
                 }
               }
