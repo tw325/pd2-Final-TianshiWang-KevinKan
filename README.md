@@ -13,3 +13,5 @@ Run the file in Java Processing and click your planet and then another to send y
 The game is currently working with a successful AI using implementation of ArrayLists! This version is in Galcon.
 
 However, we are having some bugs with our implementation of LinkedLists. This version is in Galcon1.
+
+Have fun playing!
