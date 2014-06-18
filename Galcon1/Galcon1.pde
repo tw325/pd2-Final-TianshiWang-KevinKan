@@ -203,47 +203,63 @@ void checkPlanets(){
   t2 = strongest();
   t3 = smallestRed(); 
 }
-planet biggestRed(){
-  planet p = plist.get(1);
+planet numFinderR(int n){
   for (planet x: plist){
-    if (x.planetColor == "red"){
-      if (x.num > p.num)
-        p = x;
+    if (x.num == n && x.planetColor == "red"){
+      return x;
     }
   }
-  return p;
+  return null;
+}
+planet numFinderBG(int n){
+  for (planet x: plist){
+    if (x.num == n && (x.planetColor == "blue" || x.planetColor == "gray")){
+      return x;
+    }
+  }
+  return null;
+}
+planet biggestRed(){
+  int n = 0;
+  for (planet x: plist){
+    if (x.planetColor == "red"){
+      if (x.num > n)
+        n = x.num;
+    }
+  }
+  return numFinderR(n);
 }
 planet smallestRed(){
-  planet p = plist.get(1);
+  int n = 9999;
   for (planet x: plist){
     if (x.planetColor == "red"){
-      if (x.num < p.num)
-        p = x;
+      if (x.num < n)
+        n = x.num;
     }
   }
-  return p;
+  return numFinderR(n);
 }
 
 planet weakest(){
-  planet p = plist.get(0);
+  int n = 9999;
   for (planet x: plist){
     if (x.planetColor == "blue" || x.planetColor == "gray"){
-      if (x.num < p.num)
-        p = x;
+      if (x.num < n)
+        n = x.num;
     }
   }
-  return p;
+  return numFinderBG(n);
 }
 
 planet strongest(){
-  planet p = plist.get(0);
+  int n = 0;
   for (planet x: plist){
     if (x.planetColor == "blue" || x.planetColor == "gray"){
-      if (x.num > p.num)
-        p = x;
+      if (x.num > n)
+        n = x.num;
     }
   }
-  return p;
+  return numFinderBG(n);
 }
 
 void draw() {
@@ -355,8 +371,10 @@ void draw() {
         addShipsToList(t0.sendSpaceships(t1));
       else if (n <= .6 && n > .2)
         addShipsToList(t0.sendSpaceships(t2));
-      else if (n <= .2)
+      else if (n <= .2 && !t0.equals(t3))
         addShipsToList(t0.sendSpaceships(t3));
+      else
+        addShipsToList(t0.sendSpaceships(t2));
       savedTime4 = millis();
     }
     
