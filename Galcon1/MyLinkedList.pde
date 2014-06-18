@@ -13,7 +13,7 @@ import java.util.*;
         
      void add(E d) { //Add to end
       Node<E> n = new Node<E>(d);
-      if (head.getData() == null){
+      if (head == null){
         head = new Node<E>(d);
         tail = head;
       }
