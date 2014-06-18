@@ -403,9 +403,11 @@ void draw() {
         else
           if (allShips.length()>1){
             allShips.remove(i);
+            println(allShips.length());
           }
           else{
             allShips.set(0, null);
+            println(allShips.length());
           }
       }
     }
