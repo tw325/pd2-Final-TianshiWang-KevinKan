@@ -10,4 +10,6 @@ You are playing as blue. Expand by taking the neutral gray planets, or conquer t
 
 Run the file in Java Processing and click your planet and then another to send your ships. Double click to select all of your planets. 
 
-The game is currently working! However, we have yet to find an implementation of data structures from class.
+The game is currently working using implementation of ArrayLists! This version is in Galcon.
+
+However, we are having some bugs with our implementation of LinkedLists. This version is in Galcon1.
