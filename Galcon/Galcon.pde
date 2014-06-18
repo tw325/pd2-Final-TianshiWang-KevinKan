@@ -364,12 +364,14 @@ void draw() {
     planet t3 = smallestRed();
     if ((millis() - savedTime4) > (r.nextInt(500) + 2000)){
       double n = Math.random();
-      if (n > .5)
+      if (n > .6)
         addShipsToList(t0.sendSpaceships(t1));
       else if (n <= .6 && n > .2)
         addShipsToList(t0.sendSpaceships(t2));
-      else if (n <= .2)
+      else if (n <= .2 && !t0.equals(t3))
         addShipsToList(t0.sendSpaceships(t3));
+      else
+        addShipsToList(t0.sendSpaceships(t2));
       savedTime4 = millis();
     }
     
