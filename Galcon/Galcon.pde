@@ -216,6 +216,10 @@ planet numFinderBG(int n){
 planet biggestRed(){
   int n = 0;
   for (planet x: plist){
+    if (x.planetColor == "red")
+      p = x;
+  }
+  for (planet x: plist){
     if (x.planetColor == "red"){
       if (x.num > n)
         n = x.num;
@@ -226,6 +230,10 @@ planet biggestRed(){
 planet smallestRed(){
   int n = 9999;
   for (planet x: plist){
+    if (x.planetColor == "red")
+      p = x;
+  }
+  for (planet x: plist){
     if (x.planetColor == "red"){
       if (x.num < n)
         n = x.num;
@@ -235,7 +243,15 @@ planet smallestRed(){
 }
 
 planet weakest(){
+<<<<<<< HEAD
+  planet p = plist.get(1);
+  for (planet x: plist){
+    if (x.planetColor == "blue" || x.planetColor == "gray")
+      p = x;
+  }
+=======
   int n = 9999;
+>>>>>>> b6f1730a9d56c038ba5b75b8f2c1ba835a9ace44
   for (planet x: plist){
     if (x.planetColor == "blue" || x.planetColor == "gray"){
       if (x.num < n)
@@ -246,7 +262,15 @@ planet weakest(){
 }
 
 planet strongest(){
+<<<<<<< HEAD
+  planet p = plist.get(1);
+  for (planet x: plist){
+    if (x.planetColor == "blue" || x.planetColor == "gray")
+      p = x;
+  }
+=======
   int n = 0;
+>>>>>>> b6f1730a9d56c038ba5b75b8f2c1ba835a9ace44
   for (planet x: plist){
     if (x.planetColor == "blue" || x.planetColor == "gray"){
       if (x.num > n)
@@ -358,17 +382,21 @@ void draw() {
       }
     }
    // AI HERE
-    planet t0 = biggestRed();
-    planet t1 = weakest();
-    planet t2 = strongest();
-    planet t3 = smallestRed();
     if ((millis() - savedTime4) > (r.nextInt(500) + 2000)){
+      planet t0 = biggestRed();
+      planet t1 = weakest();
+      planet t2 = strongest();
+      planet t3 = smallestRed();
       double n = Math.random();
       if (n > .6)
         addShipsToList(t0.sendSpaceships(t1));
       else if (n <= .6 && n > .2)
         addShipsToList(t0.sendSpaceships(t2));
+<<<<<<< HEAD
+      else if (n <= .2 && t0 != t3)
+=======
       else if (n <= .2 && !t0.equals(t3))
+>>>>>>> b6f1730a9d56c038ba5b75b8f2c1ba835a9ace44
         addShipsToList(t0.sendSpaceships(t3));
       else
         addShipsToList(t0.sendSpaceships(t2));

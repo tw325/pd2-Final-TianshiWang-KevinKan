@@ -125,5 +125,9 @@ LOG
 - Edited Planet Spawning
 - ^Now random and evenly spaced.
 - worked on AI (4 new methods - strongest, weakest, biggestRed and smallestRed).
-- AI complete and working well!
+- Fixed glitches with AI
 
+*Tyler Wang* <br>
+- Implemented LinkedList version of Galcon, but was not successful.
+- Designed a menu after start screen to explain instructions and to serve as a pause screen.
+- Fixed minor problems in AI ship spawning.
